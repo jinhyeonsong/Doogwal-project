@@ -1,0 +1,254 @@
+#calendar {
+    max-width: 1100px;
+    width: 540px;
+    /*캘린더 width 조정하면 알아서 내부 td요소 크기도 조정 됨*/
+    /*margin: 0 auto;*/
+    background-color: #fff;
+    position: relative;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+    /*캘린더 헤더와 바디 사이에 마진 없애주기(오버라이딩)*/
+    margin-bottom: 0;
+}
+
+#calendar .fc-header-toolbar{
+    position: relative;
+    width: 540px;
+    height: 66px;
+    /*부모에 높이 주기 자식들 다 absolute 줬기 때문에 안주면 위에 가려짐.*/
+    background-color: #fff;
+}
+.fc-header-toolbar .fc-toolbar-chunk:nth-child(1){
+    position:absolute;
+    left: 140px;
+    top: 10px;
+}
+.fc-header-toolbar .fc-toolbar-chunk:nth-child(1) .fc-today-button{
+    /*오늘 버튼*/
+    font-size: 12px;
+    color: #616161;
+    background-color: #fff;
+    border: 1px solid #9e9e9e;
+    border-radius: 2px;
+}
+.fc-header-toolbar .fc-toolbar-chunk .fc-button-group .fc-prev-button,
+.fc-header-toolbar .fc-toolbar-chunk .fc-button-group .fc-next-button{
+    /*버튼 글씨색 바꾸기*/
+    color: #616161;
+    background-color: #fff;
+    border:none;
+    outline: none;
+}
+.fc-header-toolbar .fc-toolbar-chunk:nth-child(2){
+    /*해당 월 div 요소(예:2020년 12월) 맨 왼쪽으로 밀어버리기*/
+    position:absolute;
+    left:10px;
+    top: 20px;
+}
+.fc-header-toolbar .fc-toolbar-chunk .fc-toolbar-title{
+    font-size:23px;
+}
+#calendar .fc-header-toolbar .fc-toolbar-chunk:nth-child(3){
+    display: none;
+    position:absolute;
+    left:0;
+    top: 0;
+}
+/*캘린더 탭 css 시작*/
+.calendar_tab{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 540px;
+    height: 82px;
+    z-index: 100;
+    background-color: #fff;
+}
+.calendar_tab li{
+    position:absolute;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    float:left;
+    text-align: center;
+    margin: 20px 0 10px 10px;
+}
+.calendar_tab li>a{
+    display: block;
+    width: 140px;
+    height: 40px;
+    color: #616161;
+    background-color: #fff;
+    border: 1px solid #9e9e9e;
+    transition: .3s ease;
+}
+.calendar_tab li>a:hover,.calendar_tab li>a.color{
+    background-color: #ff6333;
+    color:#fff;
+}
+.calendar_tab li:nth-child(2){
+    margin-left: 140px;
+}
+.calendar_tab li:nth-child(1)>a{
+    border-radius: 20px 0 0 20px;
+}
+.calendar_tab li:nth-child(2)>a{
+    border-radius: 0 20px 20px 0;
+}
+#calendar .fc-header-toolbar .fc-toolbar-chunk:nth-child(3) button{
+    display: none;
+}
+/*캘린더 탭 css 끝*/
+
+
+.fc-scrollgrid-section-header .fc-col-header th{
+    /*요일 부분*/
+    text-align: left;
+    font-size: 12px;
+    padding:4px 0;
+}
+
+.fc-scrollgrid .fc-scrollgrid-section-body .fc-daygrid-body .fc-daygrid-day{
+    position:relative;
+}
+.fc-daygrid-event-harness{
+    /*일정 달력에 표시되는 부분 예:오후 한시 비즈니스 미팅*/
+    position: absolute;
+    top: 20px;
+    font-size: 12px;
+}
+
+.fc .fc-daygrid-day-number {
+    /* 날짜 td
+    원래 포지션 relative 였어서 글자 왼쪽으로 정렬되게 하기 위해 position:absolute 줌
+    */
+    position:absolute;
+    left:0;
+    font-size: 12px;
+}
+.fc-daygrid-day .fc-daygrid-event-harness .fc-daygrid-event-dot,
+.fc-daygrid-day .fc-daygrid-event-harness .fc-event-time{
+    /*일정에서 시간이랑 닷 아이콘 안보이게 하기*/
+    display: none;
+}
+/*일별 스케줄 리스트 css 시작*/
+.daily_schedule_box{
+    width: 540px;
+    position: relative;
+    margin:10px auto;
+}
+.daily_schedule_box.disappear{
+    display: none;
+}
+.daily_schedule_header{
+    width:534px;
+    position:relative;
+    margin: 0 0 10px 0;
+    background-color: #fff;
+    padding: 4px 0 4px 4px;
+    border: 1px solid #eee;
+}
+#dailySchedulesList, #allSchedulesList{
+    position:relative;
+    width:540px;
+}
+/*일정 목록 li 요소 css*/
+.daily_schedule_item,.all_schedule_item{
+    width: 538px;
+    position:relative;
+    border: 1px solid #eee;
+    margin:0 0 2px 0;
+    background-color: #fff;
+}
+/* 둘다 확실히 공간 차지해야 하고 float:left 쓰기 때문에 부모에 overflow:hidden 줌 */
+.daily_schedule_item>dl,.all_schedule_item>dl{
+    overflow:hidden;
+    position:relative;
+}
+.schedule_info{
+    float:left;
+}
+.other_crew_info{
+    height: 55px;
+    float:left;
+    margin-left: 12px;
+}
+.schedule_time+dd{
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+.schedule_title+dd{
+    margin-bottom: 4px;
+}
+.schedule_title+dd>a{
+    font-size: 14px;
+}
+.schedule_rsvp+dd,.schedule_rsvp+dd+dd{
+    float:left;
+    font-size: 12px;
+    margin: 0 4px 4px 0;
+}
+.other_crew_img+dd>img{
+    width:50px;
+    height: 50px;
+    border:1px solid transparent;
+    border-radius: 50%;
+}
+.other_crew_img+dd, .other_crew+dd{
+    float:left;
+    /* 크루 커버 사진 옆에 상대 밋팅 크루 이름 뜨게 하기 위함 */
+}
+.saemo_point+dd *{
+    vertical-align: middle;
+    margin-left: 4px;
+    /*새모 포인트 이미지 가운데로 글자 위치 시키기 위함*/
+}
+.other_crew+dd{
+    margin: 0 0 2px 4px;
+}
+
+.other_crew+dd,.saemo_point+dd{
+    font-size: 12px;
+    margin-top: 12px;
+}
+/*일정 전체보기 탭 클릭시 확인 가능*/
+#allSchedulesList{
+    display: none;
+    position: relative;
+    margin-top: 10px;
+}
+#allSchedulesList.appear{
+    display: block;
+    z-index:200;
+}
+.schedule_box{
+    position: relative;
+    width: 540px;
+    height: auto;
+    /*crew detail과 프론트엔드 합치면서 margin:auto; 대신 float:left; 로 바꿈 20210109 1546 정진하*/
+    float: left;
+}
+.calendar_wrap{
+    display: block;
+    position:relative;
+    height: auto;
+    width: 540px;
+}
+.calendar_wrap.on{
+    display: none;
+}
+.fc .fc-non-business {
+    /*주말 배경 색깔 바꾸기*/
+    background: #fff;
+}
+.fc .fc-daygrid-day.fc-day-today{
+    background-color: rgba(255,99,51,0.80);
+}
+
+.calendar_box{
+  display: none;
+}
+.calendar_box.appear{
+  display: block;
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  톰캣이 객체로 만들어 놓음 -->
+<Context>
+	<Resource
+		name="oraclexe"
+		auth="Container"
+		driverClassName="oracle.jdbc.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="saemo"
+		password="1111"
+		type="javax.sql.DataSource"
+		maxIdle="20"
+		maxTotal="20"
+		maxWaitMillis="-1"
+	/>
+</Context>

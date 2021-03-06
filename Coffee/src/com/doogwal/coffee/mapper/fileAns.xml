@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fileAns">
+	
+	
+	<!--      2021 01 14  성호 part start 파일명 삽입     -->
+	<insert id="insertFileAns" parameterType="FileAns">
+		INSERT INTO file_ans(no,ans,q_no,regdate,crew_apply_no)
+		VALUES(file_ans_seq.nextval,#{ans},#{qNo},systimestamp ,#{crewApplyNo})
+	</insert>
+	<!--      2021 01 14  성호 part end     -->
+</mapper>

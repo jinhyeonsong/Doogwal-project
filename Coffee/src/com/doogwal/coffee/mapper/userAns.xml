@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userAns">
+	
+	
+	<!--      2021 01 14  성호 part start     -->
+	<insert id="insertuserAns" parameterType="UserAns">
+		INSERT INTO user_ans(no,regdate,q_no,crew_apply_no,mtp_choice_no)
+		VALUES(user_ans_seq.nextval,systimestamp,#{qNo} ,#{crewApplyNo},#{mtpChoiceNo})
+	</insert>
+	
+</mapper>

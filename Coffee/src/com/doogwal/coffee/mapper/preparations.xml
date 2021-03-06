@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	
+"-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="preparations">
+<!-- 송진현 -->
+<insert id="insert" parameterType="Preparation">
+    INSERT INTO preparations(no,schedule_no,preparation,regdate)
+    VALUES(preparations_seq.nextval,#{scheduleNo},#{preparation},systimestamp)
+</insert>
+
+<select id="selectList" parameterType="int" resultType="Preparation">
+        SELECT preparation
+        FROM preparations
+        WHERE schedule_no=#{no}
+    </select>
+    <!-- end 송진현 -->
+
+<!--박형우 start-->
+	<!--20210123 start-->
+	
+	<insert id="insertMeetingPreparation" parameterType="java.util.Map">
+		INSERT INTO preparations(no, schedule_no, preparation, regdate)
+		VALUES(preparations_seq.nextval, #{meetingNo}, #{preparation}, systimestamp)
+	</insert>
+	
+	<!--20210123 end-->
+	<!--박형우 end-->
+
+</mapper>  
+

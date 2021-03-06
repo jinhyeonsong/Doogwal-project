@@ -1,0 +1,61 @@
+@charset "UTF-8";
+.birth_year_box{
+    width: 500px;
+    height: 100px;
+    margin-bottom: 20px;
+    position : relative;
+}
+.popular_limit_box{
+    width: 500px;
+    height: 100px;
+    margin:50px 0;
+    position:relative;
+}
+.birth_year_box select{
+    padding: 6px 10px;
+    font-size: 21px;
+    border: 2px solid #9E9E9E;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #333333;
+}
+.birth_year_box h2{
+    font-size: 30px;
+    font-weight: 700;
+}
+.birth_year_box span{
+    font-size: 30px;
+    font-weight: 700;
+}
+.birth_year_box h4{
+    margin-top:10px;
+}
+.popular_limit_box h2{
+    font-size: 30px;
+    font-weight: 700;
+}
+.crew_population_limit{
+    font-size: 16px;
+    right: 5px;
+    bottom: 5px;
+}
+
+.crew_population_input {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    padding:8px 10px;
+    margin-top:10px;
+    font-size: 20px;
+}
+.head_count{
+    font-size: 30px;
+    font-weight: 700;
+}
+.next_btn_step3{
+    width: 200px;
+    height: 50px;
+    background-color: #FF6333;
+    color: #fff;
+    outline: none;
+    border: none;
+}

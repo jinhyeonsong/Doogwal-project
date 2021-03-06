@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 클린턴 비긴이 만듦  -->
+<configuration>
+<!-- jsp에서 null을  -->
+<settings>
+<setting name="jdbcTypeForNull" value="NULL" />
+</settings>
+
+<!-- alias -->
+<typeAliases>
+	<typeAlias alias="Crew" type="com.doogwal.coffee.vo.Crew"></typeAlias>
+	<typeAlias alias="User" type="com.doogwal.coffee.vo.User"></typeAlias>
+	<typeAlias alias="CrewMember" type="com.doogwal.coffee.vo.CrewMember"></typeAlias>
+	<typeAlias alias="Category" type="com.doogwal.coffee.vo.Category"></typeAlias>
+	<typeAlias alias="Question" type="com.doogwal.coffee.vo.Question"></typeAlias>
+	<typeAlias alias="MtpQuest" type="com.doogwal.coffee.vo.MtpQuest"></typeAlias>
+	<typeAlias alias="Post" type="com.doogwal.coffee.vo.Post"></typeAlias>
+	<typeAlias alias="CrewPost" type="com.doogwal.coffee.vo.CrewPost"></typeAlias>
+	<typeAlias alias="Reply" type="com.doogwal.coffee.vo.Reply"></typeAlias>
+	<typeAlias alias="Board" type="com.doogwal.coffee.vo.Board"></typeAlias>
+	<typeAlias alias="PostImg" type="com.doogwal.coffee.vo.PostImg"></typeAlias>
+	<typeAlias alias="Like" type="com.doogwal.coffee.vo.Like"></typeAlias>
+	<typeAlias alias="PageVO" type="com.doogwal.coffee.vo.PageVO"></typeAlias>
+	<typeAlias alias="UserMember" type="com.doogwal.coffee.vo.UserMember"></typeAlias>
+	<typeAlias alias="Report" type="com.doogwal.coffee.vo.Report"></typeAlias>
+	<typeAlias alias="CrewApp" type="com.doogwal.coffee.vo.CrewApp"></typeAlias>
+	<typeAlias alias="UserAns" type="com.doogwal.coffee.vo.UserAns"></typeAlias>
+	<typeAlias alias="SubjAns" type="com.doogwal.coffee.vo.SubjAns"></typeAlias>
+	<typeAlias alias="FileAns" type="com.doogwal.coffee.vo.FileAns"></typeAlias>
+	<typeAlias alias="MeetingWeApplied" type="com.doogwal.coffee.vo.MeetingWeApplied"></typeAlias>
+	<typeAlias alias="Record" type="com.doogwal.coffee.vo.Record"></typeAlias>
+	
+	<typeAlias alias="Rule" type="com.doogwal.coffee.vo.Rule"/>
+	<typeAlias alias="Theme" type="com.doogwal.coffee.vo.Theme"></typeAlias>
+	<typeAlias alias="ApplyCrew" type="com.doogwal.coffee.vo.ApplyCrew"></typeAlias>
+	<typeAlias alias="CrewHistory" type="com.doogwal.coffee.vo.CrewHistory"></typeAlias>
+	<typeAlias alias="MatchRecord" type="com.doogwal.coffee.vo.MatchRecord"></typeAlias>
+	<typeAlias alias="MatchCrew" type="com.doogwal.coffee.vo.MatchCrew"></typeAlias>
+	<typeAlias alias="FellowshipCrew" type="com.doogwal.coffee.vo.FellowshipCrew"></typeAlias>
+	<typeAlias alias="Manner" type="com.doogwal.coffee.vo.Manner"></typeAlias>
+	<typeAlias alias="Fellowship" type="com.doogwal.coffee.vo.Fellowship"></typeAlias>
+	<typeAlias alias="CrewFellowshipManner" type="com.doogwal.coffee.vo.CrewFellowshipManner"></typeAlias>
+	
+	
+	<typeAlias alias="Gathering" type="com.doogwal.coffee.vo.Gathering"></typeAlias>
+	<typeAlias alias="Meeting" type="com.doogwal.coffee.vo.Meeting"></typeAlias>
+	<typeAlias alias="Attendance" type="com.doogwal.coffee.vo.Attendance"></typeAlias>
+	<typeAlias alias="OngoingMeeting" type="com.doogwal.coffee.vo.OngoingMeeting"></typeAlias>
+	<typeAlias alias="MeetApp" type="com.doogwal.coffee.vo.MeetApp"></typeAlias>  
+	<typeAlias alias="FormallyCrewMemberJson" type="com.doogwal.coffee.vo.FormallyCrewMemberJson"></typeAlias>  
+	<typeAlias alias="WaitingMeetingCrewsJson" type="com.doogwal.coffee.vo.WaitingMeetingCrewsJson"></typeAlias>
+	<typeAlias alias="Preparation" type="com.doogwal.coffee.vo.Preparation"/>
+	<typeAlias alias="District" type="com.doogwal.coffee.vo.District"/>
+	
+</typeAliases>
+
+<!--  데이터 베이스와 연결 환경 설정 -->
+<environments default="development">
+	<environment id="development">
+		<transactionManager type="JDBC"/>
+		<!--  mybatis dataSource 클래스가 -->
+		<dataSource type="JNDI">
+			<!-- corba -->
+			<property name="data_source" value="java:comp/env/oraclexe"/>
+			<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+			<property name="driver" value ="oracle.jdbc.OracleDriver" />
+			<property name="username" value="saemo" />
+			<property name="password" value="1111" />
+		</dataSource>
+	</environment>
+</environments>
+
+<!--  mapper 경로 설정 '/' -->
+<mappers>
+	<mapper resource="com/doogwal/coffee/mapper/crews.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/users.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/crewMembers.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/categories.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/questions.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/mtpQuests.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/posts.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/replies.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/boards.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/postImgs.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/likes.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/reports.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/crewApps.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/userAns.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/subjAns.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/fileAns.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/records.xml"></mapper>
+	
+	
+	<mapper resource="com/doogwal/coffee/mapper/themes.xml" />
+	<mapper resource="com/doogwal/coffee/mapper/applycrews.xml" />
+	<mapper resource="com/doogwal/coffee/mapper/crewhistorys.xml" />
+	<mapper resource="com/doogwal/coffee/mapper/records.xml" />
+	<mapper resource="com/doogwal/coffee/mapper/fellowships.xml" />
+	<mapper resource="com/doogwal/coffee/mapper/manners.xml" />
+	
+	<mapper resource="com/doogwal/coffee/mapper/gatherings.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/schedules.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/attendances.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/meetApps.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/meetings.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/districts.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/rules.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/preparations.xml"></mapper>
+	<mapper resource="com/doogwal/coffee/mapper/districts.xml"></mapper>
+</mappers>
+
+</configuration>

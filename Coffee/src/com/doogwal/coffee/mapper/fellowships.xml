@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	
+"-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fellowships">
+	<insert id="insert" parameterType="Fellowship">
+		INSERT INTO fellowships(no,review,regdate,meeting_no,rater_no,ratee_no)
+		VALUES(fellowships_seq.nextval,#{review},systimestamp,#{meetingNo},#{raterNo},#{rateeNo})
+	</insert>
+	
+	<select id="selectByRateeNo" parameterType="map" resultType="CrewFellowshipManner">
+		SELECT name crewName,c.cover_img crewImg,f.review, f.regdate, manner,competence,harmony,eagerness,unity
+		FROM fellowships f,crews c, manners m
+		WHERE f.meeting_no = #{meetingNo} AND f.ratee_no = #{rateeNo}
+		AND m.ratee_no = c.no
+		AND f.ratee_no = c.no
+		AND f.meeting_no = m.meeting_no
+
+	</select>
+
+
+
+</mapper>  

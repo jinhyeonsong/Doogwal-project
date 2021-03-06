@@ -1,0 +1,492 @@
+body, html {
+    height: 100%;
+
+}
+#container{
+    padding-top: 0;
+    /*
+    오버라이딩
+    */
+}
+/* The hero image */
+.hero_image {
+    /* Use "linear-gradient" to add a darken background effect to the image.
+    This will make the text easier to read*/
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("/img/meeting hero1.jpg"),
+    url("/img/meeting hero2.jpg"),
+    url("/img/meeting hero3.jpg");
+
+    /* Set a specific height */
+    height: 50%;
+    /* Position and center the image to scale nicely on all screens */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left top,
+    center top,
+    right top;
+    position: relative;
+    background-color: #FCEBBD;
+}
+.meeting_filters{
+    /*background-color: #0f4c82;*/
+    width:1080px;
+    height: 70px;
+    /*부모에 하이트 지정*/
+    border-bottom: 2px solid #eee;
+}
+.meeting_tab{
+    height: 42px;
+    width:260px;
+    border-right:2px solid #eee;
+    float:left;
+    margin-top: 20px;
+}
+.meeting_tab li{
+    float: left;
+    width:120px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    transition: .3s ease;
+    /*background: #00e676;*/
+}
+.meeting_tab a{
+    display: block;
+    width:120px;
+    height: 40px;
+
+}
+.meeting_tab li:nth-child(1){
+    border-radius: 20px 0 0 20px;
+    border:1px solid #9E9E9E;
+}
+.meeting_tab li:nth-child(2){
+    border-radius: 0 20px 20px 0;
+    border:1px solid #9E9E9E;
+    border-left: none;
+}
+.meeting_tab li:hover{
+    background-color: #ff6333;
+}
+
+.meeting_tab .on{
+    background-color: #ff6333;
+}
+.search_specifics{
+    width:610px;
+    height:42px;
+    float:left;
+    margin-top:20px;
+    /*background: #8BC34A;*/
+}
+.search_specifics>li{
+    float: left;
+    width:100px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    border:1px solid #9E9E9E;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+.search_specifics>li>a{
+    display: block;
+    width:100px;
+    height:40px;
+    line-height: 40px;
+}
+
+/*2021 01 29 아림이 검색결과에서 따와서 밋팅 메인 수정할 부분*/
+.meeting_category_filter .category_btn, .age_filter .age_range_btn{
+    display: block;
+    width:100px;
+    height:40px;
+    line-height: 40px;
+    background-color: transparent;
+    font-size: 100%;
+    cursor:pointer;
+    border: none;
+    outline: none;
+}
+
+.meeting_category_filter:hover>.category_box{
+    display: block;
+}
+.category_box{
+    position: absolute;
+    width:100px;
+    height:360px;
+    display:none;
+    z-index:100;
+    background-color: #ffffff;
+    border:1px solid #9E9E9E;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+/*--------연령대 필터 css */
+.age_filter:hover>.age_box{
+    display:block;
+}
+.age_box{
+    position: absolute;
+    width:100px;
+    height:165px;
+    display:none;
+    z-index:100;
+    background-color: #ffffff;
+    border:1px solid #9E9E9E;
+    border-radius: 10px;
+    cursor:pointer;
+}
+.twenties{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.fifties{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/*2021 01 29 아림이 검색결과에서 따와서 밋팅 메인 수정할 부분 end*/
+
+.meeting_content{
+    overflow: hidden;
+    width: 1080px;
+}
+.meeting_title{
+    float:left;
+    width:220px;
+    height:64px;
+    line-height: 64px;
+    font-weight: bold;
+    /*background: #D1C4E9;*/
+}
+.meeting_title h2{
+    font-size: 30px;
+    color:#424242;
+}
+.theme_wrap{
+    position:relative;
+    overflow: hidden;
+    width:800px;
+    height:64px;
+    /*background: hotpink;*/
+}
+.theme_wrap .btn{
+    position: absolute;
+    border:none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 24px;
+    color: #757575;
+    top:19px;
+}
+.theme_wrap .btn.prev{
+    left:0;
+}
+.theme_wrap .btn.next{
+    right:0;
+}
+.theme_box{
+    width:728px;
+    height:64px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    /*버튼 width 만큼 마진레프트 줌*/
+    margin-left: 36px;
+}
+.theme_list{
+    position: absolute;
+    overflow: hidden;
+    height: 64px;
+    width:1400px;
+    /*background: seagreen;*/
+    transition: .2s ease;
+}
+.theme_list li{
+    float: left;
+    padding:4px 8px;
+    display: inline-block;
+    border:1px solid #E0E0E0;
+    border-radius: 4px;
+    margin-right:10px;
+    margin-top: 18.5px;
+    transition: .2s ease;
+}
+
+.theme_list a{
+    display: block;
+    color: #BDBDBD;
+}
+.theme_list li:hover{
+    background: #ffab40;
+}
+.meeting_list{
+    overflow: hidden;
+    float: left;
+
+}
+.meeting_list_each{
+    float: left;
+    width:267px;
+    margin: 20px 4px 20px 0;
+}
+.meeting_list_each:nth-child(4n){
+    margin-right: 0;
+}
+.meeting_cover{
+    position:relative;
+}
+.meeting_cover i{
+    display: block;
+    position: absolute;
+    right:0;
+    top:0;
+    color:#fff;
+}
+.meeting_info {
+    margin: 10px 0 0 35px;
+}
+.meeting_info li {
+    margin-bottom: 4px;
+    /*color: #757575;*/
+}
+.saemo_point * {
+    vertical-align: middle;
+}
+
+.meeting_name *    {
+    vertical-align: middle;
+}
+.meeting_name span{
+    font-size: 20px;
+}
+.saemo_point span{
+    color: #ffab40;
+}
+.crew_name{
+    font-weight: bold;
+}
+
+.pop_where_wrap {
+    /* 브라우저 기준 */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.75);
+    display: none;
+    left: 0;
+    top:0;
+}
+.pop_where_wrap.on{
+    display: block;
+}
+.pop_where_box{
+    width:360px;
+    height: 560px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    position:fixed;
+    /*position: absolute;*/
+    left: 50%;
+    top:50%;
+    margin: -281px 0 0 -181px;
+    background-color: #fafafa;
+}
+.pop_where_header_wrap{
+    width: 360px;
+    height: 58px;
+    position:relative;
+    border-bottom: 2px solid #eee;
+}
+.pop_where_header_title{
+    position:absolute;
+    top:0;
+    left: 16px;
+    padding: 15.5px 0;
+}
+.pop_close_button{
+    position: absolute;
+    border:none;
+    background-color: transparent;
+    outline: none;
+    right:8px;
+    top:12px;
+    color:#757575;
+    cursor: pointer;
+    font-size: 25px;
+}
+.filter_where{
+    font-size: 25px;
+}
+.pop_where_container{
+    width: 360px;
+    height: 500px;
+    overflow: hidden;
+}
+.korea_states{
+    width: 105px;
+    height: 500px;
+    float: left;
+    overflow: scroll;
+    overflow-x: hidden;
+    /*
+    x축 스크롤 안보이게 하기 위해서 설정함
+    */
+}
+.korea_states li{
+    width: 90px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.states_specifics{
+    width: 255px;
+    height: 500px;
+    float: left;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.states_specifics>ul{
+    display: none;
+}
+.states_specifics>ul.on{
+    /*
+    구체성 문제로 작동 안한거였음!
+    */
+    display: block;
+}
+.states_specifics>ul>li{
+    width:220px;
+    height: 50px;
+    line-height: 50px;
+    margin-left:20px;
+}
+
+/*언제 필터용 css 시작*/
+
+.tui-datepicker-input{
+    display: none;
+}
+.pop_when_wrap {
+    /* 브라우저 기준 */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.75);
+    left: 0;
+    top:0;
+    /*언제 버튼 누르기 전까지는 팝업창 보이지 않게하기 위함*/
+    display: none;
+}
+.pop_when_wrap.on{
+    display: block;
+}
+
+.pop_when_box{
+    width: 568px;
+    /*
+    274*2 +10*2(양 옆 마진 10px 줄거임)
+    */
+    height:384px;
+    border:2px solid transparent;
+    border-radius: 4px;
+    position:fixed;
+    background-color: #fafafa;
+    left:50%;
+    top:50%;
+    margin: -194px 0 0 -286px;
+}
+
+.pop_when_header_wrap{
+    width:568px;
+    height: 58px;
+    position:relative;
+    border-bottom: 2px solid #eee;
+}
+.pop_when_header_title{
+    position:absolute;
+    top:0;
+    left: 16px;
+    padding: 15.5px 0;
+}
+.filter_when{
+    font-size: 25px;
+}
+.pop_when_container{
+    position:relative;
+    margin: 10px 0 0 10px;
+    width: 548px;
+    height: 324px;
+}
+/*닫기 버튼*/
+.pop_close_button, .when_close_btn{
+    position: absolute;
+    border:none;
+    background-color: transparent;
+    outline: none;
+    right:8px;
+    top:12px;
+    color:#757575;
+    cursor: pointer;
+    font-size: 25px;
+}
+#startpicker-container>.tui-datepicker, #endpicker-container>.tui-datepicker{
+    width:274px;
+    height: 324px;
+    border:none;
+    background-color: #fafafa;
+}
+#startpicker-container>.tui-datepicker .tui-calendar,
+#startpicker-container>.tui-datepicker .tui-calendar button,
+#endpicker-container>.tui-datepicker .tui-calendar,
+#endpicker-container>.tui-datepicker .tui-calendar button{
+    background-color: #fafafa;
+}
+#startpicker-container .tui-calendar-header-info,
+#endpicker-container .tui-calendar-header-info{
+    /*월 밑에 있는 오늘 날짜 요소 지우기*/
+    display: none;
+}
+
+#endpicker-container>.tui-datepicker{
+    margin-left: 274px;
+}
+#startpicker-container .tui-calendar .tui-calendar-header,
+#endpicker-container .tui-calendar .tui-calendar-header{
+    /*월과 요일 사이에 있는 border-bottom 지우기*/
+    border-bottom: none;
+}
+.tui-calendar td, .tui-calendar th{
+    /*수직 가운데 정렬 다시 맞춰주기*/
+    line-height: 39px;
+}
+
+
+
+/*언제 필터용 css 끝*/
+
+/* 언제 필터용 새로운 css */
+/*#dateRange{display:none;}*/
+
+.daterangepicker{
+    position: static;
+    margin-top: 18px;
+}
+/*왼쪽으로 치우친 데이터 픽커 옆으로 옮기기위해 css 오버라이딩 함*/
+.daterangepicker .drp-calendar.left {
+    padding: 24px 0 24px 24px;
+}
+
+.daterangepicker .drp-calendar.right {
+    padding: 24px;
+}
+.daterangepicker .drp-buttons .btn {
+    border:none;
+    cursor:pointer;
+    color: #757575;
+}

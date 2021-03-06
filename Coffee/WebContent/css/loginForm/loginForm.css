@@ -1,0 +1,113 @@
+#loginWrap{
+    width: 600px;
+    height: 900px;
+    margin: 0 auto;
+    margin-top: -100px;
+    position: relative;
+}
+#loginHeader{
+    width: 400px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -200px;
+}
+#loginHeader>.login_logo_img{
+    width: 100%;
+}
+#loginContainer{
+    width: 500px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-top: 400px;
+    margin-left: -250px;
+}
+#loginId{
+    width: 460px;
+    height: 48px;
+    display: block;
+    margin: 10px auto;
+    font-size: 17px;
+    border: 1px solid rgb(120, 120, 120);
+    border-radius: 5px
+}
+#loginPassword{
+    width: 460px;
+    height: 48px;
+    display: block;
+    margin: 10px auto;
+    font-size: 17px;
+    border: 1px solid rgb(120, 120, 120);
+    border-radius: 5px
+}
+#loginPassword.fail{
+    border: 2px solid #d50000;
+}
+.login_fail_phrase{
+    font-size: 15px;
+    color: #d50000;
+    margin: 10px 20px;
+    display: none;
+}
+.login_btn{
+    display: block;
+    width: 460px;
+    height: 48px;
+    background-color: #ffab40;
+    color: #5a5a5a;
+    text-align: center;
+    font-size: 19px;
+    font-weight: bold;
+    font-family: 'NIXGONM-Vb', sans-serif;
+    margin: 30px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.login_keep_box{
+    width: 460px;
+    height: 40px;
+    margin: 10px auto;
+    line-height: 40px;
+}
+#loginKeepBtn{
+    margin: 5px;
+    width: 20px;
+    height: 18px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.login_keep_box label{
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.login_help_box{
+    width: 460px;
+    height: 30px;
+    margin: 20px auto;
+    line-height: 30px;
+    text-align: center;
+    border-top: 1px solid rgb(224, 224, 224);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.login_help_box a{
+    color: #424242;
+    font-size: 19px;
+}
+.login_help_box a:nth-child(1)::after{
+    content: "";
+    border-right: 1px solid rgb(224, 224, 224);
+    border-bottom: 1px solid transparent;
+    margin-left: 40px;
+}
+.login_help_box a:nth-child(2)::after{
+    content: "";
+    border-right: 1px solid rgb(224, 224, 224);
+    border-bottom: 1px solid transparent;
+    margin-left: 40px;
+}

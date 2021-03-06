@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	
+"-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="meetings">
+	<!--박형우 start-->
+	<!--20210116 start-->
+
+	<select id="selectOngoingMeetings" parameterType="int" resultType="OngoingMeeting">
+		SELECT schedules.name meetingName, crews.name crewName, img, schedules.crew_no crewNo, schedules.no meetingNo
+		FROM schedules JOIN meetings ON schedules.no = meetings.no JOIN crews ON schedules.crew_no = crews.no
+		WHERE crew_no IN(SELECT crew_no
+						FROM crew_members
+						WHERE user_no=#{no})
+		AND confirmation = 'W' AND schedules.start_date > sysdate
+		ORDER BY meetingNo
+	</select>
+	
+	<!--20210116 end-->
+	<!--20210123 start-->
+	
+	<insert id="insertMakingMeeting" parameterType="Meeting">
+		INSERT INTO meetings(NO, IMG, POINT, CATEGORY_NO, THEME_NO, PLACE, CONFIRMATION)
+		VALUES(#{no}, #{img}, #{point}, #{categoryNo}, #{themeNo}, #{place}, #{confirmation})
+	</insert>
+
+	<!--20210123 end-->
+	<!--20210125 start-->
+	
+	<update id="updateAcceptMeetingApp" parameterType="int">
+		UPDATE meetings SET confirmation = 'A'
+		WHERE no=#{no}
+	</update>
+	
+	<!--20210125 end-->
+	<!-- 20210130 start -->
+	
+	<insert id="insertAcceptMeeing" parameterType="Meeting">
+		INSERT INTO meetings(NO, IMG, POINT, CATEGORY_NO categoryNo, THEME_NO themeNo, PLACE, CONFIRMATION)	
+		VALUES(#{no}, #{img}, #{point}, #{categoryNo}, #{themeNo}, #{place}, 'A')
+	</insert>
+	
+	<select id="selectOneMeetingInformation" parameterType="int" resultType="Meeting">
+		SELECT NO, IMG, POINT, CATEGORY_NO categoryNo, THEME_NO themeNo, PLACE, CONFIRMATION
+		FROM schedules
+		WHERE no = #{no}
+	</select>
+	
+	<!-- 20210130 end -->
+	<!--박형우 end-->
+	
+	<!-- 정진하 2021 01 23 일정 뽑아올 때 포인트 얻기 위함 -->
+	<select id="selectMeetingPoint" parameterType="int" resultType="int">
+	SELECT point
+	FROM meetings
+	WHERE no = #{no}
+	ORDER BY no
+	</select>
+	<!-- 정진하 -->
+	<!-- 송진현 -->
+<select id="selectDetailOne" parameterType="int" resultType="Meeting">
+SELECT start_date startDate, end_date endDate, name, address, description, lat, lng, regdate, category_no categoryNo ,district_no districtNo, type, crew_no crewNo, regdate, point, theme_no themeNo, confirmation, img, place
+FROM schedules s, meetings m
+WHERE s.no = #{no} AND m.no = #{no}
+</select>
+<!-- end 송진현 -->
+</mapper>
+

@@ -1,0 +1,65 @@
+.post_detail_image_warp{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, .75);
+    left:0;
+    top:0;
+    z-index: 100;
+    align-items: center;
+    display: none;
+}
+.post_detail_image_warp.on{
+    display: block;
+}
+
+.right_icon{
+    font-size: 70px;
+    right: 0;
+    margin-right: 150px;
+    top:50%;
+    right: 0;
+}
+.left_icon{
+    font-size: 70px;
+    display: none;
+    left: 0;
+    margin-left: 150px;
+    top: 50%;
+    left: 0;
+    display: none;
+}
+
+.report_close{
+    right: 0;
+    top: 0;
+    margin-top: 20px;
+    margin-right: 100px;
+    font-size: 50px;
+}
+.report_icon{
+    position: absolute;
+    color: #eeeeee;
+    cursor: pointer;
+}
+
+.post_detail_image_warp .right_icon:hover, .post_detail_image_warp .left_icon:hover{
+    color: #ffab40;
+    cursor: pointer;
+}
+
+
+.enlarge_image_container{
+    width: 100%;
+    margin:100px auto;
+}
+.image_box{
+    width: 500px;
+    height: 500px;
+    /* background-image: url('../../img/5.jpg'); 이건 웹스톰에서만 그런 거 */
+    background-color: rgba(68,68,68,0.5);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 37.5%;
+}
+

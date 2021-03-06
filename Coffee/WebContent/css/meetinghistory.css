@@ -1,0 +1,1306 @@
+@charset "UTF-8";
+
+/*밋팅 신청하기 css 시작 */
+
+#meetingRequestPop {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, .75);
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.write_match_review_wrap {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .75);
+    z-index: 110;
+    display: none;
+    left: 0;
+    top: 0;
+}
+.write_match_review_wrap.appear{
+    display: block;
+}
+.write_community_gathering_review_wrap{
+	 width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .75);
+    z-index: 110;
+    display: none;
+    left: 0;
+    top: 0;
+}
+.write_community_gathering_review_wrap.appear{
+	display:block;
+}
+
+.review_pop_wrap {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .75);
+    z-index: 110;
+    left: 0;
+    top: 0;
+    display: none;
+}
+.review_pop_wrap.appear{
+    display: block;
+}
+
+#popWrap {
+    background-color: white;
+    width: 360px;
+    height: 444px;
+    position: fixed;
+    border: 1px solid black;
+    left: 50%;
+    top: 50%;
+    margin: -222px 0 0 -180px;
+}
+
+#popContainer {
+    width: 300px;
+    height: 404px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -202px 0 0 -150px;
+}
+
+.guide {
+    /*상대 크루에게 한 마디 해주세요*/
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.content_input_field {
+    /*textarea*/
+    width: 294px;
+    height: 90px;
+    border-radius: 8px;
+    border: 1px solid rgb(190, 190, 190);
+    margin-top: 20px;
+    resize: none;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.counting_characters {
+    /*글자 수 세기*/
+    margin-top: 10px;
+    position: absolute;
+    right: 0;
+    font-weight: 600;
+}
+
+.crew_box {
+    /*크루 이미지+크루 명*/
+    width: 100px;
+    margin-top: 50px;
+    float: left;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.crew_box:hover {
+    /*크루 이미지+크루 명 오버시*/
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.crew_box img {
+    /*크루 이미지*/
+    width: 80px;
+    height: 100px;
+    border-radius: 50%;
+    left: 50%;
+    position: relative;
+    margin-left: -40px;
+    margin-bottom: 30px;
+}
+
+#popContainer .fa-check {
+    /*체크 아이콘*/
+    font-size: 78px;
+    position: absolute;
+    left: 50%;
+    margin-left: -40px;
+    margin-top: 15px;
+    color: rgb(255, 91, 51);
+}
+
+.crew_box p {
+    /*크루명*/
+    width: 80px;
+    height: 30px;
+    margin: auto;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.meeting_request_confirm_btn {
+    /*확인버튼*/
+    display: block;
+    margin-top: 220px;
+    position: absolute;
+    left: 50%;
+    margin-left: -40px;
+    width: 80px;
+    height: 40px;
+    color: white;
+    background-color: #424242;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.meeting_request_confirm_btn:hover {
+    /*확인버튼 오버시*/
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+.box-radio-input p {
+    text-align: center;
+}
+
+/*라디오버튼 css*/
+.box-radio-input input[type="radio"] {
+    /*라디오버튼 없애기*/
+    display: none;
+}
+
+.box-radio-input input[type="radio"]:checked+.crew_box>img {
+    opacity: 0.3;
+    /*크루 box 클릭 시 이미지 투명도 낮추기*/
+}
+
+.box-radio-input input[type="radio"]:checked+.crew_box>p {
+    opacity: 0.3;
+    /*크루 box 클릭 시 크루 명 투명도 낮추기*/
+}
+
+.times {
+    position: absolute;
+    margin-left: 300px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/*밋팅 신청하기 css 끝 */
+
+
+
+/*밋팅히스토리 팝업 css 시작 */
+html.on {
+    overflow-y: hidden;
+    padding-right: 17px;
+}
+
+html.on #header .inner {
+    transform: translateX(-8.5px);
+}
+
+
+#container {
+    /*----------레이아웃*/
+    position: relative;
+    margin-bottom: 100px;
+}
+
+#content {
+    /*----------//레이아웃*/
+    width: 1080px;
+    margin: 30px auto;
+}
+
+/*--------------------------------------------------------------------------레이아웃*/
+.fa-arrow-left {
+    /*---------- ← 화살표 폰트어썸*/
+    font-size: 42px;
+    cursor: pointer;
+}
+
+.classificationl_box {
+    /*----------BOX<분류,카테고리(1,2),테마>*/
+    display: flex;
+}
+
+.classificationl_box div {
+    /*----------분류,카테고리(1,2),테마*/
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #FFAB40;
+    margin-left: 30px;
+    font-weight: 700;
+    height: 18px;
+}
+
+.classificationl_box div:nth-child(2) {
+    /*----------분류만 색 다르게*/
+    background-color: #ff6333;
+}
+
+/*--------------------------------------------------------------------------1. 박스*/
+.description_box {
+    /*----------첫번 째 섹션*/
+    margin-top: 30px;
+}
+
+.meeting_name {
+    /*----------밋팅 이름*/
+    font-size: 35px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.description_contents {
+    /*----------첫번 째 섹션 내용물들(총3개)*/
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #757575;
+}
+
+.description_contents h3 {
+    height: 32px;
+}
+
+.description_contents_img_box {
+    /*----------첫번 째 내용물 글*/
+    font-size: 16px;
+}
+
+.description_contents_apply img {
+    /*----------첫번 째 내용물 이미지*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 12px;
+    margin-bottom: 5px;
+}
+
+.local_map {
+    /*----------두번 째 내용물 지도*/
+    width: 427px;
+    height: 200px;
+    background-color: #ff6333;
+}
+
+.description_contents_apply {
+    /*----------세번 째 내용물*/
+    text-align: center;
+    width: 290px;
+}
+
+.btn_apply {
+    /*----------세번 째 내용물 버튼*/
+    width: 200px;
+    height: 50px;
+    background-color: #ff6333;
+    line-height: 50px;
+    border-radius: 10px;
+    margin: 5px auto;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+
+}
+
+.btn_apply:hover {
+    box-shadow: 1px 1px 1px 1px #999;
+}
+
+/*--------------------------------------------------------------------------2. description box*/
+.section_second {
+    /*----------두번 째 섹션*/
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #757575;
+}
+
+.rule_box,
+.materials_box {
+    /*----------두번 째 섹션 내용물들(총3개)*/
+    margin-top: 30px;
+}
+
+.section_second_subtitle {
+    /*----------규칙,준비물*/
+    font-size: 35px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.section_second ul>li {
+    /*----------item 간격 및 크기*/
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+/*--------------------------------------------------------------------------3. 두번째 섹션*/
+.section_third {
+    /*----------세번 째 섹션*/
+    position: relative;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #757575;
+}
+
+.section_third_title {
+    /*----------"신청한 크루"*/
+    font-size: 35px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+.section_third ul {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+}
+
+.section_third ul>li {
+    margin-left: 16px;
+}
+
+.section_third ul>li>label {
+    /*----------크루 item*/
+    display: flex;
+    width: 330px;
+    min-height: 167px;
+    border: 1px solid #757575;
+    border-radius: 10px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.section_third ul>li:hover {
+    /*----------크루 item 오버시*/
+    opacity: 0.5;
+}
+
+.section_third ul>li>label img {
+    /*----------크루 이미지*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.section_third ul>li>label div:nth-child(1) {
+    /*----------크루이름*/
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.section_third ul>li>label div:nth-child(2) {
+    /*----------크루 한마디,전적*/
+    padding-left: 30px;
+}
+
+.section_third ul>li>label div:nth-child(2)>p:nth-child(1) {
+    /*----------크루 한마디*/
+    font-size: 17px;
+    font-weight: 800;
+    margin-top: 50px;
+}
+
+.section_third ul>li>label div:nth-child(2)>p:nth-child(2) {
+    /*----------크루 전적*/
+    margin-top: 15px;
+}
+
+input[name="check_crew"] {
+    display: none;
+}
+
+input[name="check_crew"]:checked+label {
+    background-color: #FFAB40;
+    border: none;
+}
+
+.checked_input {
+    background-color: #FFAB40;
+    border: none;
+}
+
+.choosing_btn {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: #ff6333;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+    right: 0;
+    margin-right: 12px;
+    margin-top: -35px;
+}
+
+.choosing_btn:hover {
+    box-shadow: 1px 1px 1px 1px #999;
+}
+
+/*--------------------------------------------------------------------------4. 세번째 섹션*/
+.section_fourth {
+    /*----------네번 째 섹션*/
+    padding-bottom: 30px;
+    border-bottom: 1px solid #757575;
+}
+
+.history_crew_name {
+    /*----------크루이름*/
+    font-size: 35px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    display: inline-block;
+}
+
+.history_crew_name+span {
+    /*----------"히스토리"*/
+    font-size: 35px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+.history_box_main {
+    /*----------"대결,친목를 담은 box"*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.battle_history,
+.amity_history {
+    position: relative;
+    width: 539px;
+    padding: 20px;
+}
+
+.battle_history {
+    /*----------"대결"*/
+    border-right: 2px solid #757575;
+}
+
+.battle_total,
+.amity_total {
+    /*----------"대결 X승 X무 X패"*/
+    font-size: 23px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.battle_view_more,
+.amity_view_more {
+    /*----------"대결 더보기"*/
+    font-weight: 600;
+    font-size: 18px;
+    float: right;
+    border: none;
+    background-color: white;
+}
+
+.battle_view_more:hover,
+.amity_view_more:hover {
+    box-shadow: 1px 1px 1px 1px #999;
+    cursor: pointer;
+}
+
+.battle_history ul {
+    margin-top: 30px;
+}
+
+.crew_battle_history_content {
+    /*----------"크루 box"*/
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid #757575;
+    padding: 30px 0;
+}
+
+.crew_battle_history_content img {
+    /*----------"크루 이미지"*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.crew_battle_history_content div:nth-child(2) {
+    /*----------"크루 밋팅 내역"*/
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.waiting_for_the_review {
+    /*----------"후기 기다리는중"*/
+    background-color: #424242;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -15px;
+    text-align: center;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 900;
+}
+
+.match_result {
+    /*----------"승, 무, 패"*/
+    background-color: #424242;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -25px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    color: white;
+    font-weight: 900;
+}
+
+/*--------------------------------------------------------------------------5. 네번째 섹션*/
+/*--------------------------------------------------------------------------map section start*/
+.map_wrap {
+    position: relative;
+}
+
+.custom_zoomcontrol {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 80px;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #f5f5f5;
+}
+
+.custom_zoomcontrol span {
+    display: block;
+    width: 36px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.custom_zoomcontrol span img {
+    width: 15px;
+    height: 15px;
+    padding: 12px 0;
+    border: none;
+}
+
+.custom_zoomcontrol span:first-child {
+    border-bottom: 1px solid #bfbfbf;
+}
+
+/*--------------------------------------------------------------------------map section end*/
+.application_deadline {
+    font-size: 18px;
+    font-weight: 900;
+    margin-top: 20px;
+}
+
+
+#chart-area {
+    /*background-color: #333333;*/
+    margin-top: 24px;
+    z-index:0;
+}
+#chart-area .tui-chart-series-custom-event-area div{
+	z-index:0;
+}
+
+/*밋팅 히스토리 css 시작*/
+
+#meetingHistoryPopWrap {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, .75);
+    left: 0;
+    top: 0;
+    z-index: 110;
+}
+
+#meetingHistoryPop {
+    width: 500px;
+    height: 580px;
+    background-color: white;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -290px;
+    padding-top: 20px;
+	z-index:120;
+}
+
+#meetingHistoryPopWrap.appear {
+    display: block;
+}
+
+#meetingRequestPop.appear {
+    display: block;
+}
+
+#meetingHistoryPopWrap .history_content {
+    left: 8%;
+    margin-top: 30px;
+    position: absolute;
+    width: 450px;
+    height: 455px;
+    display: none;
+    overflow: auto;
+}
+
+.close_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+button {
+    background-color: transparent;
+    font-size: 100%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+/*--------------------크루 상세정보 css----------- */
+.crew_detail_item {
+    width: 390px;
+    padding: 13px 5px;
+    border-bottom: 1px solid black;
+}
+
+.crew_image {
+    display: inline-block;
+}
+
+.crew_detail_item img {
+    /*크루 이미지*/
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 1px;
+}
+
+.meeting_detail {
+    /*크루명,밋팅명,날짜*/
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.meeting_detail p {
+    /* 이미지 다음 글*/
+    margin-top: 3px;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.match_record {
+    /*크루 총 전적*/
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.crew_detail_item .review_btn {
+    /*후기 버튼*/
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background-color: #ecb345;
+    border-radius: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+    float: right;
+    top: 15px;
+    font-weight: 600;
+}
+
+.write_fellowship_review_btn {
+    /*친목 후기 남기기 버튼 */
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background-color: #ecb345;
+    border-radius: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+    float: right;
+    top: 15px;
+    font-weight: 600;
+}
+
+/*L W D 버튼 색깔*/
+.write_match_review_btn.L{
+	background-color: red;
+}
+.write_match_review_btn.D{
+	background-color: green;
+}
+.write_match_review_btn.W{
+	background-color: blue;
+}
+
+
+.read_fellowship_review_btn {
+    /*친목 후기 남기기 버튼 */
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    background-color: #939597;
+    border-radius: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+    float: right;
+    top: 15px;
+    font-weight: 600;
+}
+
+.win {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #a61d3a;
+    text-align: center;
+    line-height: 40px;
+    color: white;
+    position: relative;
+    float: right;
+    top: 10px;
+    font-weight: 500;
+}
+
+.lose {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2c3d61;
+    text-align: center;
+    line-height: 40px;
+    color: white;
+    position: relative;
+    float: right;
+    top: 10px;
+    font-weight: 500;
+}
+
+/*//--------------------크루 상세정보 css----------- */
+
+/*----------------------대결/친목 tab css*-------*/
+.history_box_list {
+    padding-left: 80px;
+}
+
+.history_box_list li {
+    float: left;
+}
+
+.history_box_list input {
+    /*라디오 버튼 안보이게 하기*/
+    display: none;
+}
+
+#meetingHistoryPopWrap .history_box_list input:checked+label {
+    background-color: #FF6333;
+    color: white;
+    border: 1px solid #FF6333;
+}
+
+
+#meetingHistoryPopWrap input:checked~.history_content {
+    display: block;
+}
+
+.history_box_list label {
+    display: inline-block;
+    margin-top: 20px;
+    width: 120px;
+    height: 40px;
+    font-size: 19px;
+    padding: 10px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.match_tab label {
+    position: relative;
+    margin-left: 30px;
+    border: 0.2px solid #424242;
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+}
+
+.community_gathering_tab label {
+    position: relative;
+    border-top: 0.2px solid #424242;
+    border-right: 0.2px solid #424242;
+    border-bottom: 0.2px solid #424242;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
+
+/*//----------------------대결/친목 tab css*-------*/
+
+
+/*---- 밋팅히스토리 제목 and 전적 글씨 css ------*/
+.title {
+    text-align: center;
+}
+
+.title h1 {
+    font-size: 35px;
+    font-weight: 900;
+}
+
+.title h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/*----------------chart-----------------*/
+.radar_chart_for_group_personality {
+    width: 400px;
+    height: 300px;
+    margin-top: 10px;
+}
+
+.tui-chart-default-tooltip {
+    display: none;
+}
+
+circle {
+    display: none;
+}
+
+.tui-chart-series-custom-event-area {
+    width: 400px;
+    height: 300px;
+}
+
+/*//----------------chart-----------------*/
+.community_gathering_tab .meeting_detail {
+    margin-left: 50px;
+}
+
+/*친목 - 후기읽기 팝업 css start*/
+.crew_detail_item .review_btn {
+    /*친목후기 읽기 버튼 */
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    background-color: #214151;
+    border-radius: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+    float: right;
+    top: 15px;
+    font-weight: 600;
+}
+/*
+.community_gathering_review_box {
+    margin: 200px auto;
+    width: 400px;
+    min-height: 580px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+}
+*/
+
+.time_crew_wrote_the_review {
+    position: absolute;
+    top:20px;
+    right: 10px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.community_gathering_review_form {
+    /*폼 내부 가운데 정렬*/
+    text-align: center;
+    padding-top:30px;
+}
+
+.community_gathering_review_form>crew_profile img {
+    /*크루 이미지*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.community_gathering_review_form>crew_profile p {
+    /*크루 명*/
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.fellowship_write_review_check_list {
+    /*체크리스트*/
+    position: relative;
+    margin-top: 30px;
+    margin-left: -110px;
+    text-align: left;
+    width: 250px;
+    left: 50%;
+}
+
+.fellowship_write_review_check_list label {
+    /*체크라벨 블록처리(수직정렬)*/
+    display: block;
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.fellowship_review_message_box {
+    /* 상대에게 한 마디 box*/
+    position: relative;
+    margin-top: 30px;
+    margin-left: -125px;
+    width: 250px;
+    left: 50%;
+}
+
+.fellowship_review_message_box_title {
+    /*상대 크루에게 한 마디 해주세요*/
+    margin-bottom: 10px;
+    font-size: 19px;
+    font-weight: 900;
+    color: #c75550;
+}
+
+.fellowship_review_message_box textarea {
+    /*textarea*/
+    width: 200px;
+    height: 100px;
+    font-size: 18px;
+    resize: none;
+    border: 1px solid #DADDE2;
+    outline: none;
+    margin-bottom: 30px;
+}
+
+.appear {
+    display: block;
+}
+
+.disappear {
+    display: none;
+}
+
+.prev_btn {
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    margin-left: -30px;
+    margin-top: -20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #757575;
+}
+
+/*친목 - 후기읽기 팝업 css end */
+
+
+/*대결후기쓰기 css start */
+.match_review_box {
+    margin: 200px auto;
+    width: 400px;
+    height: 580px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+}
+
+.match_review_form {
+    /*폼 내부 가운데 정렬*/
+    text-align: center;
+}
+
+.venue {
+    /*홈, 어웨이*/
+    line-height: 20px;
+    position: absolute;
+    top: 140px;
+    left: 200px;
+    width: 60px;
+    height: 20px;
+    background-color: #cc5750;
+    font-weight: 600;
+    color: white;
+    border-radius: 20px;
+    transform: rotateY(40deg);
+    transform-origin: right;
+}
+
+.result_option {
+    /*승,무,패 디자인*/
+    width: 60px;
+    height: 30px;
+    padding: 2px;
+    background-color: #424242;
+    line-height: 30px;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.result_option:hover {
+    /*라디오 버튼 오버시*/
+    cursor: pointer;
+}
+
+.crew_profile img {
+    /*크루 이미지*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.crew_profile p {
+    /*크루 명*/
+    font-size: 22px;
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+.match_check_list {
+    /*체크리스트*/
+    position: relative;
+    margin-top: 30px;
+    margin-left: -100px;
+    text-align: left;
+    width: 250px;
+    left: 50%;
+}
+
+.match_check_list label {
+    /*체크라벨 블록처리(수직정렬)*/
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.confirm_btn {
+    /*확인 버튼*/
+    width: 80px;
+    height: 40px;
+    background-color: #ff6333;
+    font-size: 17px;
+    font-weight: 900;
+    border-radius: 10px;
+    color: white;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.match_review_form input[type="radio"] {
+    /*라디오버튼 안보이기 */
+    display: none;
+}
+
+.match_review_form input[type="radio"]:checked+.result_option {
+    background-color: #438676;
+}
+
+.write_match_review_btn {
+    /*대결 후기 쓰기 버튼 */
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background-color: #ecb345;
+    border-radius: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+    float: right;
+    top: 15px;
+    font-weight: 600;
+}
+
+.match_review_prev_btn {
+    /*대결 후기 쓰기 팝업 뒤로가기 버튼 */
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    margin-left: -30px;
+    margin-top: -20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #757575;
+}
+
+
+/*대결후기쓰기 css end */
+
+
+/*친목후기쓰기 css start */
+.community_gathering_review_box {
+    margin: 200px auto;
+    width: 400px;
+    min-height: 580px;
+    background-color: white;
+    border-radius: 10px;
+   	position:relative;
+}
+
+.community_gathering_review_form {
+    /*폼 내부 가운데 정렬*/
+    text-align: center;
+}
+.crew_profile{
+	height:200px;
+	margin-top:15px;
+	position:relative;	
+}
+
+.crew_profile img {
+    /*크루 이미지*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.crew_profile p {
+    /*크루 명*/
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.check_list {
+    /*체크리스트*/
+    position: relative;
+    margin-top: 30px;
+    margin-left: -110px;
+    text-align: left;
+    width: 250px;
+    left: 50%;
+    /*background-color: #3eb39d;*/
+}
+
+.check_list label {
+    /*체크라벨 블록처리(수직정렬)*/
+    display: block;
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.fellowship_send_message_box {
+    /* 상대에게 한 마디 box*/
+    position: relative;
+    margin-top: 30px;
+    margin-left: -125px;
+    width: 250px;
+    left: 50%;
+}
+
+.fellowship_send_message_box>p {
+    /*상대 크루에게 한 마디 해주세요*/
+    margin-bottom: 10px;
+    font-size: 19px;
+    font-weight: 900;
+    color: #c75550;
+}
+
+.fellowship_send_message_box textarea {
+    /*textarea*/
+    width: 200px;
+    height: 100px;
+    font-size: 18px;
+    resize: none;
+    outline: none;
+}
+
+.word_counter {
+    /*(0/30자)*/
+    margin-right: 20px;
+    text-align: right;
+}
+
+.community_gathering_review_form>.confirm_btn {
+    /*친목후기쓰기 확인 버튼*/
+    width: 80px;
+    height: 40px;
+    background-color: #ff6333;
+    font-size: 17px;
+    font-weight: 900;
+    border-radius: 10px;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.fellowship_review_prev_btn {
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    margin-left: -30px;
+    margin-top: -20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #757575;
+}
+
+
+/*친목후기쓰기 css end */

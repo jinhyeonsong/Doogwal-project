@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="posts">
+
+	<!--박형우 start-->
+	<!--20210114 start-->
+	
+		<select id="selectTopContents" parameterType="int" resultType="Post">
+			SELECT contents
+			FROM posts
+			WHERE board_no=#{no} AND top='Y'
+		</select>
+		
+	<!--20210114 end-->
+	<!--박형우 end-->
+
+
+	<!-- 주성호 2021 01 25 start -->
+	<!-- 글 상세 불러오기 -->
+	<select id="selectPostDetailOne" parameterType="int" resultType="CrewPost">
+		SELECT no,member_no memberNo,regdate,contents,like_cnt likeCnt,board_no boardNo,image_applicable imageApplicable,top,reply_cnt replyCnt,texts
+		FROM posts 
+		WHERE no = #{no}
+	</select>
+	<!-- 글 수정하기 -->
+	<select id="selectPostUpdateOne" parameterType="int" resultType="Post">
+		SELECT no,member_no memberNo,regdate,contents,like_cnt likeCnt,board_no boardNo,image_applicable imageApplicable,top,reply_cnt replyCnt,texts
+		FROM posts 
+		WHERE no = #{no}
+	</select>
+	
+	<!-- 글 페이지 처리 -->
+	<select id="selectPostDetailList" resultType="CrewPost" parameterType="hashMap">
+      SELECT no, memberNo, regdate, contents, likeCnt, boardNo, imageApplicable,replyCnt,texts
+      FROM   (SELECT no, memberNo, regdate, contents, likeCnt, boardNo, imageApplicable,replyCnt,texts, rownum r
+            FROM   (
+                  SELECT   p.no,p.member_no memberNo,p.regdate,contents,like_cnt likeCnt,board_no boardNo,image_applicable imageApplicable, reply_cnt replyCnt,texts
+                  FROM posts p, boards b
+                  WHERE b.crew_no = #{crewNo} AND board_no = #{boardNo} AND board_no = b.no
+                  ORDER BY 3 DESC
+                  )
+            )
+      WHERE r BETWEEN #{start} AND #{end}
+   </select>
+	
+	<!-- 글 좋아요 -->
+	<update id="postPushLike" parameterType="int">
+		UPDATE posts
+		SET like_cnt = like_cnt+1
+		WHERE no=#{no} 
+	</update>
+	
+	<!-- 글 좋아요 취소 -->
+	<update id="postUnPushLike" parameterType="int">
+		UPDATE posts
+		SET like_cnt = like_cnt-1
+		WHERE no=#{no} 
+	</update>
+	
+	<!-- 글 작성 -->
+	<insert id="insertPost" parameterType="Post">
+		INSERT INTO posts(no,member_no,regdate,contents,like_cnt,board_no,image_applicable,top,reply_cnt,texts)
+		VALUES(posts_seq.nextval,#{memberNo},systimestamp,#{contents},0,#{boardNo},#{imageApplicable},#{top},0,#{texts})
+	</insert>
+	
+	<!-- 글 삭제 -->
+	<delete id="deletePost" parameterType="int">
+		DELETE
+		FROM posts
+		WHERE no=#{no}
+	</delete>
+	
+	<select id="selectpostNo" resultType="int">
+		SELECT posts_seq.nextval-1
+		FROM dual
+	</select>
+	
+	<!-- 주성호 2021 01 25 end -->
+
+	<!-- 신고받은 글 불러오기 멤버 번호 삽입 -->
+	<select id="selectReportPost" resultType="Post" parameterType="int">
+		SELECT P.NO no, U.NAME name, C.PROFILE_IMG profileImg, P.CONTENTS contents, p.regdate regdate
+		FROM POSTS P, (SELECT DISTINCT POST_NO
+		FROM REPORTS
+		WHERE member_no = #{memberNo}) R, USERS U, CREW_MEMBERS C
+		WHERE P.NO = R.POST_NO 
+		AND P.MEMBER_NO = C.NO 
+		AND U.NO = C.USER_NO
+		AND P.MEMBER_NO = #{memberNo}
+	</select>
+
+</mapper>

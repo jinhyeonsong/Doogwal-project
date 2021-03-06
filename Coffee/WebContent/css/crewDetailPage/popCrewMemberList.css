@@ -1,0 +1,160 @@
+#popMemberListWrap{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    display: none;
+    z-index: 100;
+}
+#popMemberListWrap>.close_btn{
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    font-size: 60px;
+    color: #7a7a7a;
+    cursor: pointer;
+    z-index: 3;
+}
+#popMemberListWrap>.close_btn:hover{
+    color: #FFAB40;
+}
+#popMemberListContainer{
+    width: 500px;
+    height: 510px;
+    margin: 200px auto;
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+}
+.crew_all_member{ /* XX명 */
+    font-size: 20px;
+    font-weight: 600;
+}
+#popMemberListContainer ul{ /*멤버 list*/
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    overflow-x: hidden;
+    width: 530px;
+    height: 434px;
+}
+#popMemberListContainer li{ /*멤버 item*/
+    border-bottom: 2px solid #757575;
+}
+.member_item{ /* 크루원 img+name */
+    height: 100px;
+    line-height: 100px;
+    position: relative;
+}
+.member_img{ /* 크루원 img */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.member_name{ /*이름*/
+    font-size: 22px;
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 30px;
+}
+.crew_head_title{/*크루 장 마크*/
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #FF6333;
+    line-height: 30px;
+    text-align: center;
+    margin-left: 30px;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: 900;
+    color: white;
+}
+.crew_middle_title{/*운영진*/
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+    background-color: #3EB39D;
+    line-height: 30px;
+    text-align: center;
+    margin-left: 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 900;
+    color: white;
+}
+/*12-26*/
+.liorder_first{
+    order: 1;
+}
+.liorder_second{
+    order: 3;
+}
+.liorder_third{
+    order: 2;
+}
+.member_item a{
+    pointer-events: none;
+}
+.declaration_box{/*신고하기*/
+    position: absolute;
+    width: 70px;
+    height: 30px;
+    background-color: #d50000;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    right: 40px;
+    top: 35px;
+    cursor: pointer;
+    color: white;
+}
+.declaration_box span{
+	width: 70px;
+    height: 30px;
+	display:block;
+}
+.declaration_box:hover{
+    background-color: #ff6333;
+}
+.management_member_box, .management_operator_box{/*관리 버튼 내용 물*/
+    position: absolute;
+    right: 120px;
+    top: 35px;
+    cursor: pointer;
+    width: 50px;
+    height: 30px;
+    background-color: #ff6333;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    border-radius: 3px;
+}
+.management_member_box:hover, .management_operator_box:hover{
+    border: 1px solid black;
+}
+.management_member_box:hover .management_btn_box, .management_operator_box:hover .management_btn_box{/*오버시 펼쳐지기*/
+    display: block;
+    z-index: 3;
+}
+.management_btn_box div{/*일반회원/운영진으로 전환, 탈퇴시키기*/
+    width: 130px;
+    background-color: white;
+    color: black;
+}
+.management_btn_box div:hover{
+    background-color: grey;
+}
+.management_btn_box{/*펼쳐지는 버튼 2개*/
+    display: none;
+    width:100px;
+    position: absolute;
+    right:28px;
+}

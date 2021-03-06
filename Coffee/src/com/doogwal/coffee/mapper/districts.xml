@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	
+"-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="districts">
+
+
+	<!-- 송진현 -->
+<select id="selectOne" parameterType="String" resultType="District" >
+	SELECT no
+	FROM districts
+	WHERE name=#{name}
+</select>
+<!-- end 송진현 -->
+
+
+	<!-- 박형우 start -->
+	<!-- 20210119 start -->
+	
+	<select id="selectDistrictNo" parameterType="String" resultType="int" >
+		SELECT MIN(no)
+		FROM districts
+		WHERE name=#{name}
+	</select>
+	
+	<!-- 20210119 end -->	
+	<!-- 박형우 end -->
+
+
+</mapper>  
+	
+	
+
+

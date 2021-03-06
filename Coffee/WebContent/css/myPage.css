@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+#container {
+    overflow: hidden;
+    /*
+    #container 크게 .snb 와 #content 담고 있음.
+    각각 float 속성 left,right 값 주었기 때문에
+    #container에 overflow:hidden 주었음.
+    */
+}
+
+.snb {
+    width: 130px;
+    /* 60*3 + 2*2 */
+    height: 184px;
+    /* .snb 에 높이 지정해서 공간 차지하게 한 것인가? */
+    border: 2px solid #757575;
+    float: left;
+    /*position:fixed;*/
+}
+
+.snb li {
+    /*
+    .snb 가 확실히 공간 차지하기 때문에
+    .snb li는 position: absolute; 주면 됨
+    질문: 근데 float:left; 줬는데?
+    */
+    position: absolute;
+    width: 130px;
+    height: 60px;
+}
+
+.snb a {
+    cursor: pointer;
+    /*인라인레벨 a 요소에 너비높이 주기위해서 디스플레이 블락함*/
+    display: block;
+    width: 130px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    transition: .1s linear;
+}
+.snb a:hover{
+    background-color: #eee;
+}
+
+.snb li:nth-child(1) {
+    border-bottom: 2px solid #757575;
+}
+
+.snb li:nth-child(2) {
+    border-bottom: 2px solid #757575;
+    /*높이 60px + 바닥 보더 값 2px 만큼 밑으로 내려가야 하기 때문에*/
+    margin: 62px 0 0 0;
+}
+
+.snb li:nth-child(3) {
+    margin: 124px 0 0 0;
+}
+
+#content {
+    /*content 를 .snb 옆에 수평으로 두기위해 이렇게 작성함*/
+    /*background: steelblue;*/
+    width: 912px;
+    float: right;
+    font-family: 'NIXGONM-Vb', sans-serif;
+}
+
+.profiles {
+    width: 908px;
+    height: auto;
+    border: 2px solid #757575;
+}
+
+.profiles_header,.personal_info_header,.user_leave_header {
+    width: 892px;
+    border-bottom: 2px solid #757575;
+    margin: 10px 0 0 4px;
+    padding: 4px 0 10px 10px;
+}
+
+.profiles_header>h3,.personal_info_header>h3,.user_leave_header>h3 {
+    font-size: 30px;
+}
+
+.profiles_content {
+    /*.profile 에 float:left;를 주었기 때문에 */
+    overflow: hidden;
+}
+
+.profile {
+    width: 264px;
+    height: 194px;
+    float: left;
+    text-align: center;
+    margin: 20px 0 20px 30px;
+}
+
+.profile img {
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.profile dd:nth-child(2) {
+    font-size: 25px;
+    margin: 0 0 16px 0;
+}
+
+.profile dd:nth-child(4) {
+    margin: 0 0 16px 0;
+}
+.profile label {
+    /*원래 a 링크 줬었는데 label로 바꾸었음*/
+    /*text-align: center;는 계속 적용되면서 가로세로값 주고 싶어서 인라인블록 속성 줌*/
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #757575;
+    color: #fff;
+    width: 80px;
+    height: 28px;
+    line-height: 28px;
+}
+<!--20210113 1836 크루 없을 시 사진 변경 버튼 대신 index.jsp로 이동 -->
+.find_crew {
+	display: block;
+	border-radius: 5px;
+    background-color: #757575;
+    color: #fff;
+    width: 80px;
+    height: 28px;
+    line-height: 28px;
+}
+
+.profile input{
+    /*input요소를 숨겨서 파일 첨부창 뜨지 않게 함*/
+    display: none;
+}
+.personal_info {
+    width: 908px;
+    height: auto;
+    border: 2px solid #757575;
+    margin: 30px 0 0 0;
+}
+
+.personal_info_content {
+    overflow: hidden;
+    width: 892px;
+    height: auto;
+    margin: 0 0 0 10px;
+}
+
+.personal_info_content>dt {
+    float: left;
+    /*
+    플롯주면 블록레벨이 됨.
+    relative, fixed, absolute 주면 3층 되면서 블록레벨 됨
+    */
+    width: 176px;
+    height: 50px;
+    line-height: 50px;
+    /*background-color: red;*/
+    font-size: 24px;
+    text-align: left;
+    padding: 0 0 0 16px;
+}
+
+.personal_info_content>dd {
+    float: left;
+    /*background-color: blue;*/
+    width: 684px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    padding: 0 0 0 16px;
+    position: relative;
+}
+
+.personal_info_content:last-child input,label{
+    /*수신동의 체크박스랑 글씨에 마우스 가져다대면*/
+    cursor: pointer;
+}
+/*주소 상세창과 인풋창 edit 클래스 주는 것에 따라서 보였다가 안보였다가 하기 위함*/
+.address {
+    display: block;
+}
+/*부모에게 클래스 줌: 선생님이 알려주심*/
+.edit .address {
+    display: none;
+}
+.address_input{
+    display: none;
+    font-size: 20px;
+    margin-top:12px;
+}
+.edit .address_input {
+    display: block;
+}
+.email {
+    display: block;
+}
+/*끝*/
+
+.edit_btn{
+    width: 40px;
+    height: 28px;
+    color: #fff;
+    box-sizing: content-box;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    background: #757575;
+    border-radius: 2px;
+    position: absolute;
+    right: 20px;
+    top: 8px;
+    font-size: 15px;
+    padding: 4px 4px;
+}
+.user_leave {
+    width: 908px;
+    height: auto;
+    border: 2px solid #757575;
+    margin: 30px 0 30px 0;
+}
+.user_leave_content {
+    position: relative;
+    margin: 20px 30px 30px 10px;
+}
+.user_leave_content label {
+    display: block;
+    margin: 0 0 10px 0;
+}
+.user_leave_content input {
+    height: 30px;
+}
+.leave_btn{
+    cursor: pointer;
+    width: 60px;
+    height: 28px;
+    background: #757575;
+    border-radius: 2px;
+    position: absolute;
+    right: 8px;
+    top:28px;
+    font-size: 15px;
+    padding: 8px 8px;
+    color: #fff;
+    box-sizing: content-box;
+    border: none;
+}

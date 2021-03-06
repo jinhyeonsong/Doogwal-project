@@ -1,0 +1,164 @@
+#popRegisterWrap{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.3);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    z-index: 100;
+}
+#popRegisterWrap>.close_btn{
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    font-size: 60px;
+    color: #7a7a7a;
+    cursor: pointer;
+    z-index: 3;
+}
+#popRegisterWrap>.close_btn:hover{
+    color: #FFAB40;
+}
+#popRegisterForm{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left:50%;
+    margin: 0 0 0 -229px;
+    background-color: transparent;
+    overflow-y: scroll;
+}
+.form_box_list{
+    margin-top: 110px;
+}
+.form_box_item{
+    width: 458px;
+    min-height: 340px;
+    border: 1px solid #424242;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background-color: white;
+    position: relative;
+}
+.register_profile_box{
+    width: 422px;
+    position: relative;
+}
+.person_info_box{
+    position: relative;
+    width: 400px;
+    height: 60px;
+    margin: 20px 0 10px 30px;
+}
+.profile_img{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+.profile_img>img{
+    border-radius: 50%;
+}
+.profile_box{
+    position: absolute;
+    top: 7px;
+    left: 75px;
+}
+.introduce_box{
+    width: 400px;
+    margin-left: 105px;
+    margin-top: 15px;
+    margin-bottom: 17px;
+}
+.qualification_answer_box{
+    width: 458px;
+    min-height: 173px;
+    text-align: center;
+}
+.qualification_answer_box>h3{
+    font-size: 24px;
+    font-weight: 700;
+}
+.answer_list{
+    margin-top: 12px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+}
+.answer_item{
+    margin:5px 0;
+}
+.question::before{
+    content: "Q.";
+    font-weight: bold;
+    margin-right: 8px;
+}
+.answer{
+    margin: 10px 0;
+}
+.answer::before{
+    content: "A.";
+    font-weight: bold;
+    margin-right: 8px;
+}
+.confirm_box{
+    margin-top: 17px;
+    text-align: center;
+}
+.confirm_btn_box{
+    margin: 11px 0 26px 0;
+}
+.next_btn{
+    margin-right: 14px;
+    font-size: 20px;
+}
+.remain_time{
+    margin-left: 14px;
+}
+.confirm_btn_box button {
+    width: 100px;
+    height: 40px;
+    background-color: rgb(255, 99, 51);
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form_box_item.allow::before{
+            content:"\f584";
+            font-family:"Font Awesome 5 Free";
+            font-size: 210px;
+            color: #FFAB40;
+            opacity: 40%;
+            position: absolute;
+            top: 170px;
+            left: 130px;
+            animation-name: appearPositive;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+}
+@keyframes appearPositive {
+    from{transform: rotate(0deg);}
+    to{transform: rotate(35deg);}
+}
+.form_box_item.reject{
+    background-color: #8d8d8d;
+}
+.form_box_item.reject::before{
+    content:"\f5b4";
+    font-family:"Font Awesome 5 Free";
+    font-size: 210px;
+    color: #d50000;
+    opacity: 40%;
+    position: absolute;
+    top: 170px;
+    left: 130px;
+    animation-name: appearNegative;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes appearNegative {
+    from{transform: rotate(0deg);}
+    to{transform: rotate(-35deg);}
+}

@@ -1,0 +1,766 @@
+/*------------------------ 크루 디테일 헤더 ------------------------*/
+#crewDetailHeader {
+	width: 100%;
+	height: 70px;
+	background-color: #90a4ae;
+	border-bottom: 1px solid #e0e0e0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	margin-top: 100px;
+}
+
+/* 1) 헤더 안 게시판 버튼 */
+.crew_detail_header_box {
+	width: 1080px;
+	height: 70px;
+	margin: 0 auto 30px auto;
+	position: relative;
+}
+
+.crew_detail_board_box {
+	font-size: 20px;
+	display: inline-block;
+	margin: 36px 0 0 240px;
+}
+
+.crew_detail_board_item {
+	display: inline-block;
+	color: white;
+	padding: 5px 20px;
+}
+
+.crew_detail_board_item:hover {
+	font-weight: bold;
+}
+
+.crew_detail_board_item input[type="radio"] {
+	display: none;
+}
+
+.crew_detail_board_item input[type="radio"]:checked+label {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.crew_detail_board_item input[type="radio"]+label, .board_adding {
+	cursor: pointer;
+}
+
+/* 2) 헤더 안 기능 버튼 */
+.crew_operator_function_box {
+	font-size: 14px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.crew_operator_function_item {
+	display: inline-block;
+	padding: 5px 5px;
+	position: relative;
+}
+
+.crew_operator_function_item>button:hover {
+	font-weight: bold;
+}
+
+.crew_operator_function_item>button {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: white;
+	font-size: 14px;
+	margin-right: -5px;
+	cursor: pointer;
+}
+.crew_applicant_nobody{
+    position: absolute;
+    width: 230px;
+    height: 30px;
+    top: 34px;
+    left: 16px;
+    text-align: center;
+    color: #5a5a5a;
+    font-size: 15px;
+    background-color: rgba(255,183,89, 0.9);
+    border-radius: 0 5px 5px 5px;
+    display: none;
+    z-index: 3;
+}
+.crew_applicant_nobody>i{
+    font-size: 24px;
+    margin-right: 15px;
+    margin-top: 3px;
+}
+.crew_applicant_nobody::before{
+    content: '';
+    width: 0px;
+    height: 0px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid rgba(255,183,89, 0.9);
+    position: absolute;
+    top: -8px;
+    left: 0;
+}
+/*-------------------------------------------------------------------*/
+
+/*------------------------ 크루 디테일 컨테이너 ------------------------*/
+#crewDetailContainerWrap {
+	width: 100%;
+    background-color: #EEF0F3;
+    padding-top: 70px;
+    padding-bottom: 50px;
+}
+
+#crewDetailContainer {
+	width: 1080px;
+    margin: 0 auto;
+    padding-top: 20px;
+    position: relative;
+}
+
+#crewDetailContainer:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+/*-------------------------------------------------------------------*/
+
+/*------------------------ 왼쪽 사이드 바 ------------------------*/
+#crewInformationSideBar {
+	width: 260px;
+	float: left;
+	margin-right: 10px;
+}
+
+.crew_information_box {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #bababa;
+}
+
+.crew_information_box>img {
+	width: 220px;
+	height: 160px;
+	margin-bottom: 10px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 8px 0
+		rgba(0, 0, 0, 0.12);
+}
+
+.crew_name_box {
+	margin: 10px 0;
+}
+
+.crew_name {
+	font-size: 25px;
+}
+
+.crew_member_number {
+	cursor: pointer;
+}
+
+.crew_member_number:hover {
+	text-decoration: underline;
+}
+
+.crew_introduction {
+	font-size: 17px;
+}
+
+.meeting_information_box {
+	margin: 10px 0;
+	font-size: 17px;
+}
+
+.meeting_history, .meeting_bring {
+	display: inline-block;
+	margin: 10px 0;
+	position: relative;
+}
+
+.meeting_bring {
+	margin-left: 3px;
+	margin-right: 22px;
+}
+
+.meeting_history:hover, .meeting_bring:hover {
+	color: #FFAB40;
+}
+
+.meeting_bring>i, .meeting_history>i {
+	font-size: 15px;
+	margin-right: 2px;
+}
+
+.crew_sex_ratio_box {
+	position: relative;
+	height: 280px;
+	margin-top: 28px;
+}
+
+.sex_ratio_male_image_box {
+	margin-top: 10px;
+	overflow: hidden;
+}
+
+.sex_ratio_male_image_box>img {
+	max-height: initial;
+}
+
+.sex_ratio_female_image_box {
+	overflow: hidden;
+}
+
+.sex_ratio_female_image_box>img {
+	max-height: initial;
+}
+
+.crew_sex_ratio_box>span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 30px 0 0 125px;
+	color: white;
+	font-weight: bold;
+}
+
+.saemo_point_box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.saemo_point {
+	font-size: 21px;
+	margin-left: 17px;
+	color: #606060;
+}
+/*-------------------------------------------------------------------*/
+
+/*------------------------ 크루 포스트 컨테이너 ------------------------*/
+#crewPostContainer {
+	width: 540px;
+	float: left;
+}
+/* 1) 크루 디테일 마다 있는 고정 포스트 컨테이너 */
+#fixedPostContainer {
+	width: 540px;
+	margin-bottom: 10px;
+}
+/* 1-1) 업커밍 이벤트 박스 */
+.crew_upcomming_event_box {
+	width: 538px;
+	height: 88px;
+	border: 1px solid #bababa;
+	margin-bottom: 10px;
+	position: relative;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 8px 0
+		rgba(0, 0, 0, 0.12);
+	background-color: white;
+}
+
+.upcomming_event_name {
+	font-size: 18px;
+	font-weight: bold;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 20px 0 0 30px;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.upcomming_event_spot {
+	font-size: 22px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 50px 0 0 30px;
+    width: 360px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.upcomming_event_participants {
+	font-size: 18px;
+	font-weight: bold;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 59px 50px 0 0;
+}
+
+.upcomming_event_participants_list_box {
+	position: absolute;
+	display: inline-block;
+	background-color: rgba(66, 66, 66, 0.7);
+	top: 87px;
+	left: 399px;
+	z-index: 10;
+	border-radius: 0 5px 5px 5px;
+	display: none;
+}
+
+.upcomming_event_participants_list_box::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	border-bottom: 10px solid rgba(66, 66, 66, 0.7);
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+	top: -10px
+}
+
+.upcomming_event_participants_list {
+	padding: 3px 1px 0 3px;
+}
+
+.upcomming_event_participants_list>li {
+	display: inline-block;
+	margin-right: 3px;
+}
+
+.upcomming_event_participants_list img {
+	border-radius: 50%;
+	margin-right: -4px;
+}
+/* 1-2) 가입 조건 보여주는 박스  */
+.crew_qualification_condition_box {
+	width: 538px;
+	height: 158px;
+	border: 1px solid #bababa;
+	position: relative;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 8px 0
+		rgba(0, 0, 0, 0.12);
+	background-color: white;
+	margin-bottom: 10px;
+}
+
+.crew_qualification_condition_title {
+	width: 538px;
+	height: 34px;
+	border-bottom: 1px solid #757575;
+}
+
+.crew_qualification_condition_title>span {
+	font-size: 19px;
+	position: absolute;
+	margin: 10px 0 5px 10px;
+}
+
+.condition_box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 50px 0 0 50px;
+}
+
+.condition_list {
+	display: block;
+	font-size: 19px;
+	width: 400px;
+	height: 70px;
+	/*text-overflow: ellipsis;*/
+	overflow: hidden;
+}
+
+.condition_list>li {
+	margin-bottom: 5px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.view_more {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 10px;
+	margin-top: 75px;
+	font-size: 16px;
+	color: #818181;
+	display: none;
+	cursor: pointer;
+}
+
+.view_more:hover {
+	text-decoration: underline;
+}
+
+.crew_join {
+	width: 120px;
+	height: 30px;
+	margin-left: 170px;
+	text-align: center;
+	background-color: #FFAB40;
+	border-radius: 5px;
+}
+
+.crew_join>a {
+	display: block;
+	width: 120px;
+	height: 30px;
+	padding: 7px 0;
+	color: white;
+}
+
+.crew_join>a:hover {
+	text-decoration: underline;
+}
+/* 1-3) 상위 고정 포스트 글 박스 */
+.precedence_fixing_post_box {
+	width: 538px;
+	margin-bottom: 10px;
+	position: relative;
+	background-color: white;
+	position: relative;
+	display: none;
+}
+
+.precedence_fixing_post_list {
+	width: 100%;
+	border: 1px solid #bababa;
+	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.16), 0 0 8px 0 rgba(0, 0, 0, 0.12);
+}
+
+.precedence_fixing_post_item {
+	position: relative;
+	width: 538px;
+	margin-top: 13px;
+	border-bottom: 1px solid #ededed;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+
+.precedence_fixing_post_item>.precedence_fixing_post {
+	width: 480px;
+	margin: 7px auto;
+	font-size: 18px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.precedence_fixing_post_item>.precedence_fixing_post_before_icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 10px;
+	font-size: 17px;
+	font-weight: bold;
+	color: #ffab40;
+}
+
+.precedence_fixing_post_item>.precedence_fixing_post_after_icon {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #c0c0c0;
+}
+
+.precedence_fixing_post_item:hover {
+	text-decoration: underline;
+}
+/* 1-4) 글쓰기 버튼 */
+.posting_box {
+	width: 540px;
+	height: 50px;
+	position: relative;
+}
+
+.posting_btn {
+	display: block;
+	font-family: 'NIXGONM-Vb', sans-serif;
+	width: 540px;
+	height: 45px;
+	background-color: white;
+	border: none;
+	box-shadow: 0 0 2px 0 #6b6b6b inset;
+	cursor: pointer;
+}
+
+.posting_btn>span {
+	font-size: 15px;
+	color: #717171;
+	position: absolute;
+	top: 15px;
+	left: 30px;
+}
+
+.posting_btn i {
+	margin-left: 5px;
+}
+
+.posting_btn:hover i {
+	color: #FFAB40;
+}
+.stranger_post_box{
+    width: 540px;
+    height: 540px;
+    position: relative;
+}
+.stranger_post_box>img{
+    width: 540px;
+    height: 360px;
+}
+.stranger_post_box>p{
+    position: absolute;
+    top: 270px;
+    left: 47px;
+    font-size: 30px;
+}
+/*-------------------------------------------------------------------*/
+
+/*------------------------ 크루 오른쪽 기능 사이드바 ------------------------*/
+#crewFunctionBar {
+	width: 260px;
+	float: right;
+	margin-left: 10px;
+}
+
+.chatting_box {
+	width: 258px;
+	height: 98px;
+	position: relative;
+	border: 1px solid #bababa;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 8px 0
+		rgba(0, 0, 0, 0.12);
+	background-color: white;
+}
+
+.chatting_box>span {
+	display: block;
+	width: 250px;
+	font-size: 15px;
+	padding: 10px 0 5px 10px;
+	border-bottom: 1px solid #757575;
+}
+
+.current_chatting_box {
+	width: 260px;
+	height: 70px;
+	position: relative;
+}
+
+.current_chatting {
+	display: block;
+	width: 260px;
+	height: 70px;
+}
+
+.current_chatting>img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 15px 0 0 20px;
+}
+
+.current_chatting:hover>.chatting_box_crew_name {
+	text-decoration: underline;
+}
+
+.chatting_box_crew_name {
+	font-size: 18px;
+	font-weight: bold;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 13px 0 0 80px;
+}
+
+.current_chatting:hover>.chatting_box_crew_name {
+	text-decoration: underline;
+}
+
+.chatting_text {
+	position: absolute;
+	display: block;
+	width: 170px;
+	top: 0;
+	left: 0;
+	margin: 36px 0 0 80px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.meeting_apply_box {
+	width: 258px;
+	border: 1px solid #bababa;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 8px 0
+		rgba(0, 0, 0, 0.12);
+	background-color: white;
+	margin-top: 10px;
+}
+
+.meeting_apply_list {
+	overflow: hidden;
+}
+
+.meeting_apply_list>dt {
+	border-bottom: 1px solid #757575;
+	text-align: center;
+	padding: 5px 0;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.meeting_apply_item {
+	position: relative;
+	width: 129px;
+	text-align: center;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.meeting_apply_item>a {
+	display: block;
+}
+
+.meeting_apply_item img {
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 5px 0 0 44px;
+}
+
+.meeting_apply_item.comfirm_mark img{
+    border: 3px solid #FFAB40;
+}
+
+.meeting_apply_item.comfirm_mark .apply_item_crew_name:after{
+    content: '확정\f209';
+    font-family: "Font Awesome 5 Brands";
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    color: #FFAB40;
+}
+
+.meeting_apply_item.bring_mark img{
+    border: 3px solid #E99B9B;
+}
+
+.meeting_apply_item.bring_mark .apply_item_crew_name:after{
+    content: '\f51e';
+    font-family: "Font Awesome 5 Free";
+    font-size: 17px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    color: #E99B9B;
+}
+
+.meeting_apply_item:hover .apply_item_crew_name {
+	text-decoration: underline;
+}
+
+.apply_item_crew_name {
+	display: block;
+	padding: 55px 0 10px 0;
+	font-weight: bold;
+}
+
+.apply_item_meeting_name {
+	display: -webkit-box;
+	width: 120px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: normal;
+	margin-left: 4px;
+	text-align: center;
+}
+/*-------------------------------------------------------------------*/
+
+/*------------------------ 게시판 추가 컨테이너 ------------------------*/
+#boardPlusContainer {
+	position: fixed;
+	width: 500px;
+	height: 90px;
+	margin-top: 70px;
+	margin-left: 300px;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 2;
+	font-size: 18px;
+	background-color: white;
+	box-shadow: 0 0 3px 1px #ededed;
+	border-radius: 10px;
+	display: none;
+}
+#boardPlusContainer>.close_btn{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 17px;
+    color: black;
+    cursor: pointer;
+    z-index: 3;
+}
+#boardPlusContainer>.close_btn:hover{
+    color: #FFAB40;
+}
+.board_plus_title_box {
+	border-bottom: 1px solid #c0c0c0;
+	width: 500px;
+	height: 30px;
+}
+
+.board_plus_title {
+	font-weight: bold;
+	margin-top: 12px;
+	margin-left: 20px;
+}
+
+.board_number {
+	margin-left: 5px;
+	vertical-align: middle;
+}
+
+.board_plus_contents_box {
+	width: 500px;
+	height: 60px;
+}
+
+.board_plus_contents {
+	margin-left: 20px;
+	line-height: 50px;
+}
+
+.board_plus_contents span {
+	vertical-align: middle;
+}
+
+.board_plus_contents input {
+	width: 300px;
+	height: 20px;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+.board_plus_contents button {
+	font-size: 16px;
+	width: 60px;
+	height: 28px;
+	border: none;
+	border-radius: 5px;
+	margin-left: 10px;
+	background-color: #ededed;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.board_plus_contents button:hover {
+	border: 1px solid #ffab40;
+}

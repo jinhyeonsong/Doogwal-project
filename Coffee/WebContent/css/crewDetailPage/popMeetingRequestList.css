@@ -1,0 +1,121 @@
+#popMeetingRequestWrap{
+    background-color: rgba(0,0,0,.3);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    z-index: 100;
+    display: none;
+}
+#popMeetingRequestWrap>.close_btn{
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    font-size: 60px;
+    color: #7a7a7a;
+    cursor: pointer;
+    z-index: 3;
+}
+#popMeetingRequestWrap>.close_btn:hover{
+    color: #FFAB40;
+}
+#popMeetingRequestContainer{
+    width: 700px;
+    height: 674px;
+    background-color: #ffffff;
+    position: fixed;
+    left:50%;
+    top:50%;
+    margin-left: -350px;
+    margin-top: -327px;
+    text-align: center;
+    overflow: scroll;
+    overflow-x: hidden;
+    border-radius: 10px;
+}
+.pop_meeting_request_title{
+    font-size: 50px;
+    margin-top: 20px;
+    font-weight: 700;
+}
+.list_of_meeting_request_box{
+    position: relative;
+    width: 640px;
+    min-height: 700px; /* container의 높이는 밋팅 신청 수에 따라 달라지므로 min-height를 줬음*/
+    margin: 0 auto;
+}
+.meeting_request_item{
+    width: 600px;
+    height: 150px;
+    border-bottom: 2px solid #757575;
+    list-style: none;
+    position: relative;
+    margin-top: 30px;
+    padding-bottom: 10px;
+ }
+.meeting_request_item .crew_profile{ /*크루 이미지, 크루명 div */
+    width: 110px;
+    height: 145px;
+    display: inline-block;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 400;
+    vertical-align: top;
+    margin-right: 20px;
+    position: absolute;
+    top: 0;
+    left: 30px;
+}
+.meeting_request_item .crew_img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+.meeting_request_detail{/*미팅 상세 내용 */
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    /*background-color: #ff6333;*/
+    vertical-align: middle;
+    font-size: 18px;
+    width: 270px;
+}
+.meeting_request_detail .countdown_timer{
+    margin-left: 10px;
+}
+.meeting_request_detail>p{
+    margin-bottom: 20px;
+}
+.meeting_request_detail .saemo_point_img{
+    position: absolute;
+    margin-top: -5px;
+    margin-left: -35px;
+}
+.meeting_request_item .btn_box{
+    width: 182px;
+    height: 50px;
+    display: inline-block;
+    margin-left: 20px;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+}
+.meeting_request_item .accept_btn, .meeting_request_item .decline_btn{
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: #424242;
+    color: white;
+    font-size: 20px;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor:pointer;
+}
+.meeting_request_item .accept_btn:hover, .meeting_request_item .decline_btn:hover{
+    background-color: #FFAB40;
+}
+.meeting_request_item .accept_btn{
+    margin-right: 10px;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mtpquests">
+	
+	
+	<!--      2021 01 14  성호 part start  객관식 번호 넣기   -->
+	<insert id="insertMtpQuests" parameterType="MtpQuest">
+		INSERT INTO mtp_quests(no,mtp_choice,q_no,regdate)
+		VALUES(mtp_quests_seq.nextval,#{mtpChoice},#{qNo} ,systimestamp)
+	</insert>
+	
+	<!-- 객관식 번호 불러오기   -->
+	<select id="selectUserAnswersMtpQuestsList" parameterType="int" resultType="MtpQuest">
+		SELECT no, mtp_choice mtpChoice, q_no qNo,regdate
+		FROM mtp_quests
+		WHERE q_no = #{qNo}
+	</select>
+	<!--      2021 01 14  성호 part end     -->
+</mapper>

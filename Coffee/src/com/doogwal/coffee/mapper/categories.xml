@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="categories">
+
+	<!-- 송진현 -->
+<select id="selectList" resultType="Category">
+SELECT no,name,prior_no priorNo,regdate,icon
+FROM categories
+ORDER BY 1
+</select>
+
+<select id="selectOne" resultType="Category">
+SELECT s.name name, d.name nameParents
+FROM categories s,categories d
+WHERE s.no = #{no} AND s.prior_no = d.no
+</select>
+<!-- end 송진현 -->
+	
+</mapper>

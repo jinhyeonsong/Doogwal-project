@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	
+"-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rules">
+	<!--박형우 start-->
+	<!--20210123 start-->
+
+	<insert id="insertMeetingRule" parameterType="java.util.Map">
+		INSERT INTO rules(no, rule, regdate, meeting_no)
+		VALUES(rules_seq.nextval, #{rule}, systimestamp, #{meetingNo})
+	</insert>
+
+	<!--20210123 end-->
+	<!--박형우 end-->
+	<!-- 송진현 -->
+<select id="selectList" parameterType="int" resultType="Rule">
+		SELECT rule
+		FROM rules
+		WHERE meeting_no=#{no}
+	</select>
+	<!-- end 송진현 -->
+</mapper>
+

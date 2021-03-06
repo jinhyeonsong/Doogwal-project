@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="postImgs">
+<!--      2021 01 14  성호 part start  이미지 불러오기   -->
+	<select id="selectImageList" parameterType="int" resultType="PostImg">
+		SELECT no,image, post_no postNo
+		FROM post_imgs
+		WHERE post_no = #{postNo}
+	</select>
+	
+<!-- 	이미지 삽입   -->
+	<insert id="insertPostImages" parameterType="PostImg">
+		INSERT INTO post_imgs(no, image,post_no)
+		VALUES(post_imgs_seq.nextval, #{image}, #{postNo})
+	</insert>
+	<!--      2021 01 14  성호 part end -->
+		<!-- 삭제하기 -->
+	<insert id="deletePostImages" parameterType="int">
+		DELETE
+		FROM post_imgs
+		WHERE post_no = #{postNo}
+	</insert>
+	<!--      2021 02 02  성호 part end    -->
+</mapper>

@@ -1,0 +1,223 @@
+#inviteWrap{
+    background-color: rgba(0,0,0,.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none;
+}
+#inviteWrap>.close_btn{
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    font-size: 60px;
+    color: #7a7a7a;
+    cursor: pointer;
+    z-index: 3;
+}
+#inviteWrap>.close_btn:hover{
+    color: #FFAB40;
+}
+.ongoing_meeting_pop button{
+    background-color: transparent;
+    font-size: 100%;
+    cursor:pointer;
+    border: none;
+    outline:none;
+}
+.ongoing_meeting_pop{
+    overflow: hidden;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -296px;
+    margin-top: -241px;
+    width: 590px;
+    height: 480px;
+    background-color: #fafafa;
+    text-align: center;
+}
+.ongoing_meeting_pop h1{
+    margin-top: 40px;
+    font-size: 32px;
+    font-weight: bold;
+}
+.meet_check{
+    display: none;
+    position: absolute;
+    width: 156px;
+    height: 156px;
+    top:0;
+    left: 0;
+    background-color: rgba(255,255,255,.3);
+}
+.ongoing_meeting_item input[type="radio"]{
+    display: none;
+}
+.ongoing_meeting_item input[type="radio"]:checked + label .meet_check{
+    display: block;
+}
+.ongoing_meeting_item input[type="radio"] + label{
+    width: 150px;
+    height: 100px;
+    cursor: pointer;
+    display: block;
+}
+
+.fa-check{
+    font-size: 125px;
+    color: #00bcd4;
+    position: absolute;
+    top: 20px;
+    left:16px;
+}
+.ongoing_meeting_box{
+    margin-top: 60px;
+    width: 1000px;
+    height: 250px;
+}
+.ongoing_meeting_item{
+    float:left;
+    width: 156px;
+    margin-left: 32px;
+    position: relative;
+}
+.ongoing_meeting_list{
+    transition: .6s cubic-bezier(.37,-0.45,.61,.67);
+}
+.fa-chevron-left{
+    color: #ff6333;
+    font-size: 20px;
+    position: absolute;
+    background-color: transparent;
+    left: 0;
+    top: 241px;
+    z-index: 10;
+    cursor:pointer;
+}
+.fa-chevron-right{
+    color: #ff6333;
+    font-size: 20px;
+    background-color: transparent;
+    position: absolute;
+    right: 0;
+    top: 241px;
+    z-index: 10;
+    cursor:pointer;
+}
+.ongoing_meeting_box img{
+    border-radius: 50%;
+}
+.ongoing_meeting_item .crew_name{
+    width:156px;
+    height: 24px;
+    line-height: 24px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.meeting_name{
+    width: 156px;
+    font-size: 16px;
+}
+.ongoing_meeting_item input{
+    display: none;
+}
+
+.inviteStep1 .step_box:nth-child(1) {display: block}
+.inviteStep1 .step_box:nth-child(2) {display: none}
+
+.inviteStep2 .step_box:nth-child(1) {display: none}
+.inviteStep2 .step_box:nth-child(2) {display: block}
+
+.point_meeting_pop{
+    overflow: hidden;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -296px;
+    margin-top: -241px;
+    width: 590px;
+    height: 480px;
+    text-align: center;
+    background-color: #fafafa;
+}
+.pop_title_box h1{
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: 700;
+}
+.close_btn{
+    position:absolute;
+    cursor: pointer;
+    font-size: 30px;
+    right: 10px;
+    margin-top: 10px;
+}
+.point_meeting_pop h1{
+    margin-top: 48px;
+    font-size: 35px;
+    font-weight: bold;
+}
+.point_meeting_pop button{
+	background-color: transparent;
+    font-size: 100%;
+    cursor:pointer;
+    border: none;
+    outline:none;
+}
+.available_points{
+    margin-top: 80px;
+}
+.available_points h2{
+    font-size: 25px;
+    color: rgba(255, 99, 51,.9);
+    font-weight: 900;
+}
+.spending_points_box{
+    margin-top: 40px;
+}
+.enter_points{
+    position: relative;
+}
+.enter_points input{
+    width: 200px;
+    height: 40px;
+    position: relative;
+    outline: 1px solid #424242;
+}
+.enter_points_input:focus{
+}
+.point_options{
+    height: 42px;
+    position: relative;
+    margin: 30px 120px;
+    width: 370px;
+}
+.point_option{
+    background-color: #ffab40;
+    border: 1px solid #ffab40;
+    border-radius: 50px;
+    float: left;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 10px 0 0;
+    transition: 2s ease linear;
+    cursor:pointer;
+    color: #ffffff;
+}
+.point_option:active{
+    background-color: #ff6333;
+}
+.point_submit_button button{
+    width: 100px;
+    height: 40px;
+    border-radius: 5%;
+    font-size: 17px;
+    color: #fff;
+    background-color: #ff6333;
+    cursor:pointer;
+    margin-top: 20px;
+}

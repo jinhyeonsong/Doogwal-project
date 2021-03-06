@@ -1,0 +1,81 @@
+#reportBoxWrap{
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.75);
+    display: none;
+    left: 0;
+    top:0;
+    z-index: 2;
+}
+#reportBoxWrap.on{
+    display: block;
+}
+#reportBox{
+    width: 450px;
+    height: 482px;
+    border: 1px solid #cacaca;
+    position: fixed;
+    left: 50%;
+    top:20%;
+    margin: 0 0 0 -225px;
+    background-color: #fafafa;
+	z-index: 100;
+}
+.report_title{
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+    padding: 20px 0;
+    border-bottom: 1px solid #cacaca;
+}
+.report_target_box{
+    padding: 15px 0 15px 30px;
+    font-size: 18px;
+    border-bottom: 1px solid #cacaca;
+}
+.target_name_box>.title, .target_post_box>.title{
+    color: #676767;
+    margin-right: 4px;
+}
+.target_post_box>.report_target_post{
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.report_reason_list{
+    width: 450px;
+    height: 385px;
+}
+.report_reason_item{
+	height:25px;
+    padding: 17px 0 17px 30px;
+    border-bottom: 1px solid #cacaca;
+    position: relative;
+    cursor: pointer;
+    line-height: 20px;
+}
+.report_reason_item span{
+    display: inline-block;
+    width: 350px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.report_reason_item i{
+    display: inline-block;
+    font-size: 20px;
+    line-height: 20px;
+    color: #979797;
+    vertical-align: middle;
+    margin-left: 30px;
+    cursor: pointer;
+}
+.report_reason_item:last-child{
+    border-bottom: none;
+}
+.report_reason_item:hover i{
+    color: #ffab40;
+}
+.report_reason_item input{
+    display: none;
+}

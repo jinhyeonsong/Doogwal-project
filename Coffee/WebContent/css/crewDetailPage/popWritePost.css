@@ -1,0 +1,149 @@
+.pop_write_wrap, .pop_update_wrap{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.75);
+    display: none;
+    left: 0;
+    top:0;
+    z-index: 100;
+}
+
+.pop_write_wrap.on, .pop_update_wrap.on{
+    display: block;
+}
+
+.pop_write, .pop_update{
+    width: 600px;
+    max-height: 799px;
+    position: fixed;
+    left: 50%;
+    top:40%;
+    margin: -255px 0 0 -300px;
+    background-color: #fafafa;
+    z-index: 100;
+}
+.disappear_view{
+    display: none;
+}
+.appear_view{
+    display: block;
+}
+.pop_write h2, .pop_update h2{
+    margin:20px 0;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+#standalone-container{
+    width: 560px;
+    padding: 0 20px;
+}
+#toolbar-container{
+    background-color: silver;
+}
+#editorContainer {
+    width:560px;
+    min-height: 250px;
+    max-height: 600px;
+    position: relative;
+}
+.ql-formats{
+}
+.ql-editor{
+    min-height: 250px;
+    max-height: 600px;
+}
+.ql-toolbar.ql-snow{
+    border: none;
+    border-bottom: 1px solid #424242;
+    background-color: #fafafa;
+}
+.ql-container.ql-snow{
+    border: none;
+    border-bottom: 1px solid #424242;
+    background-color: #fafafa;
+}
+.editor_write_images{
+    margin-bottom: 10px;
+}
+
+.editor_write_images li{
+    display: inline;
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color : #424242;
+
+}
+
+.editor_upload_box.ql-toolbar.ql-snow{
+   	border-bottom:0;
+   	padding:0;
+ }
+label{
+    cursor: pointer;
+}
+button{
+    cursor: pointer;
+}
+.editor_upload_box{
+    position: relative;
+    left: 20px;
+    bottom: 0;
+    margin: 20px 0;
+}
+#post_submit_btn{
+    position: absolute;
+    left: 430px;
+    bottom : 20px;
+}
+
+#post_submit_btn>button{
+    width: 90px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.close{
+    color: #757575;
+    position:absolute;
+    right:30px;
+    top:20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+p>img{
+    user-select: none;
+    cursor: pointer;
+
+}
+p>img:hover{
+    border: 5px solid #00C853;
+}
+.ql-editor strong{
+    font-weight:bold;
+}
+.ql-editor em{
+    font-style:italic;
+}
+.file_item{
+    position: relative;
+    width: 128px;
+    height: 38px;
+    border: 1px solid #00C853;
+    margin:5px 0;
+    padding: 8px 10px;
+    display: inline-block;
+}
+.file_item h4{
+    margin-bottom: 5px;
+    color: #00C853;
+}
+.remove_question{
+    cursor: pointer;
+    position:absolute;
+    right: -5px;
+    top: -5px;
+}

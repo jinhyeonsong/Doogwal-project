@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="users">
+	<select id="selectLogin" parameterType="User" resultType="User">
+		SELECT no, name, email, password, phone_num phoneNum, gender, birth_date birthDate, address, email_check emailCheck, email_auth emailAuth, regdate
+		FROM users
+		WHERE email = #{email} AND password = #{password}
+	</select>
+	
+	<select id="selectUserOne" parameterType="int" resultType="User">
+		SELECT no, name, email, password, phone_num phoneNum, gender, birth_date birthDate, address, email_check emailCheck, email_auth emailAuth, regdate
+		FROM users
+		WHERE no=#{no}
+	</select>
+	
+	
+		<!--박형우 start-->
+	<!--20210114 start-->
+	<select id="selectAttendanceUser" parameterType="int" resultType="User">
+		SELECT no, name, email, password, phone_num phoneNum, gender, birth_date birthDate, address, email_check emailCheck, email_auth eamilAuth, regdate
+		FROM users
+		WHERE no=#{no}
+	</select>
+	<!--20210114 end-->
+	<!--박형우  end-->
+	
+	<!-- 정진하 20210114 0812 마이페이지에서 주소,수신상태 업데이트 -->	
+	<update id="updateUserAddress" parameterType="User">
+		UPDATE users
+		SET address = #{address}
+		WHERE no = #{no}
+	</update>
+	
+	<update id="updateUserSmsReception" parameterType="User">
+		UPDATE users
+		SET sms_check = #{smsCheck}
+		WHERE no = #{no}
+	</update>
+	
+	<update id="updateUserEmailReception" parameterType="User">
+		UPDATE users
+		SET email_check = #{emailCheck}
+		WHERE no = #{no}
+	</update>
+	<!--정진하 20210116 2250 회원가입 인서트 -->
+	
+	<insert id="insert" parameterType="User">
+		INSERT INTO users
+		(no, name, email, password, regdate, phone_num, gender, birth_date, address, email_check, sms_check,
+		email_auth)
+		VALUES(users_seq.nextval, #{name},#{email} ,#{password},
+		systimestamp,#{phoneNum}, #{gender},#{birthDate},#{address},#{emailCheck},#{smsCheck},#{emailAuth})
+	</insert>
+	
+</mapper>

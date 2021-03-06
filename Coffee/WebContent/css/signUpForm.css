@@ -1,0 +1,172 @@
+/*signUpForm.css start*/
+
+#header{
+    background-color: white;
+}
+#container{
+    position: relative;
+    padding-top: 0;
+}
+#content{
+    width: 1080px;
+    margin: auto;
+}
+/*상단 진행 상태*/
+.sign_up_head{ /* <h1>SAEMO 회원가입</h1>*/
+    font-size: 30px;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 50px;
+}
+.sign_up_list{/*진행 바*/
+    position: relative;
+    float: right;
+    left: -55%;
+    margin-top: 50px;
+}
+.sign_up_item{/*아이콘+아이콘 감싼 원+부제목*/
+    position: relative;
+    float: left;
+    left: 50%;
+    margin-left: 100px;
+}
+.sign_up_circle{/*아이콘을 감싼 원*/
+    width: 70px;
+    height: 70px;
+    background-color: rgb(190, 190, 190);
+    border-radius: 50%;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    line-height: 75px;
+    margin: 0 auto;
+}
+.circle_color{/*원에 색주기*/
+    background-color: rgb(255, 91, 51);
+}
+.sign_up_subtitle{/*<p>약관 동의,정보입력,이메일인증</p>*/
+    font-size: 18px;
+    font-weight: 550;
+    margin-top: 10px;
+}
+.font_weight_up{/*글 굵기 키우기*/
+    font-weight: 900;
+    font-size: 20px;
+}
+.vertical_line{/*수평선*/
+    position: absolute;
+    width: 350px;
+    height: 2px;
+    background-color: rgb(190, 190, 190);
+    left:400px;
+    top: 35px;
+}
+/*form---------------------------------------------------------------------*/
+.group_join_writing{ /*정보입력 box*/
+    margin: 200px auto;
+    width: 730px;
+}
+.group_join_box{ /*정보입력 box > box*/
+    margin: 10px auto 0 auto;
+}
+.sign_up_table{ /*box > table*/
+    border: 1px solid #dcdcdc;
+}
+
+.data_title{
+    background-color: #dcdcdc;
+    width: 150px;
+    padding-left: 50px;
+    height: 60px;
+    font-size: 18px;
+    text-align: left;
+    line-height: 60px;
+    border-right: 1px solid #dcdcdc;
+    border-bottom: 1px solid #eee;
+}
+.data_content{ /*table> 두번 째 항: 이름 입력*/
+    border-bottom: 1px solid #eee;
+    padding-left: 30px;
+}
+.asterisk{ /*  '*' 색 red */
+    color: #ff6333;
+}
+.btn_join:hover,.btn_cancel:hover{ /*  버튼 오버시*/
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+.basic_info_input{ /*<input>이름,이메일,비밀번호 적용 */
+    height: 30px;
+    border: 1px solid #E0E0E0;
+    outline-color: #ff6333;
+    font-weight: 600;
+}
+.my_address_label{ /*<input>주소 */
+    display: inline-block;
+    width: 400px;
+    height: 40px;
+    border: 1px solid #E0E0E0;
+    vertical-align: middle;
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    transition: .1s linear;
+}
+.my_address_label:hover{
+    cursor: pointer;
+    box-shadow:1px 1px 1px 1px #eee;
+}
+.new_user_birth_date input{ /* <input>생년월일 */
+    /*20210116 1844 정진하 셀렉트에서 단순 인풋요소 입력으로 바꿈*/
+    width: 112px;
+    height: 30px;
+    border: 1px solid #E0E0E0;
+}
+.password_instruction1,.password_instruction2{  /*비밀번호 도움글*/
+    display: inline-block;
+    height: 30px;
+    width: 250px;
+    vertical-align: middle;
+    font-size: 16px;
+    margin-left: 10px;
+}
+.password_instruction1 { /* <p>"비밀번호는 영문, 숫자, 특수문자를 포함하여 6~16자로 구성해주세요." */
+    line-height: normal;
+}
+.password_instruction2{  /* <p>"비밀번호를 한번 더 입력해주세요." */
+    line-height: 30px;
+}
+.required_space{/*"필수 공간입니다"*/
+    height: 30px;
+    width: 250px;
+    vertical-align: middle;
+    font-size: 16px;
+    margin-left: 10px;
+    line-height: 30px;
+    color: #ff6333;
+    display: none;
+}
+.not_required{ /*필요없는 것들 (지도)*/
+    display: none;
+}
+.btn_cancel,.btn_join{/*취소,가입하기 버튼*/
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    border: none;
+    font-size: 20px;
+    outline: none;
+    text-align: center;
+}
+.btn_cancel{/*취소버튼*/
+    margin: 32px 40px 0 220px;
+    background-color: #424242;
+    opacity: 0.5;
+}
+.btn_join{/*가입하기 버튼*/
+    color: white;
+    background-color:#ff6333;
+    opacity: 0.9;
+}

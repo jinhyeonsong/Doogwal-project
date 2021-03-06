@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="meetApps">
+
+	<!--박형우 start-->
+	<!--20210114 start-->
+	
+	<select id="weApplymeetingList" parameterType="int" resultType="MeetingWeApplied">
+		SELECT mapps.no meetAppsNo, ms.no meetingsNo, ms.img img, s.name SchedulesName, s.description description, mapps.apply_crew_no applyCrewNo, s.address address, mapps.acceptance acceptance, s.start_date startDate, mapps.introduce introduce, c.name crewName
+		FROM meet_apps mapps JOIN meetings ms ON mapps.meeting_no = ms.no JOIN schedules s ON s.no = ms.no JOIN crews c ON c.no = s.crew_no
+		WHERE mapps.apply_crew_no = #{no} AND NOT mapps.acceptance='R' AND SYSDATE &lt; s.start_date
+	</select>
+	
+	<!--20210114 end-->
+	<!--20210117 start-->
+
+	<insert id="bringMeeting" parameterType="MeetApp">
+		<selectKey order="BEFORE" resultType="int" keyProperty="no">
+			SELECT MEET_APPS_SEQ.nextval
+			FROM dual
+		</selectKey>
+		INSERT INTO meet_apps(no, regdate, meeting_no, apply_crew_no, acceptance, introduce)
+		VALUES(#{no}, systimestamp, #{meetingNo}, #{applyCrewNo}, 'B', #{introduce})
+	</insert>
+
+	<!--20210117 end-->
+	<!-- 20210122 start -->
+
+	<select id="selectWatingMeetingCrews" parameterType="int" resultType="WaitingMeetingCrewsJson">
+		SELECT mapp.no no, meeting_no meetingNo, apply_crew_no applyCrewNo, introduce, cs.cover_img crewCoverImg, cs.name crewName, s.name meetingName, s.start_date startDate, mapp.regdate regdate
+		FROM meet_apps mapp JOIN crews cs ON mapp.apply_crew_no = cs.no JOIN schedules s ON mapp.meeting_no = s.no
+		WHERE meeting_no IN (SELECT ms.no
+							FROM schedules s JOIN meetings ms ON s.no = ms.no
+							WHERE s.crew_no = #{no} AND s.start_date > sysdate)
+		AND acceptance = 'W'
+		ORDER BY no
+	</select>
+	
+	<update id="updateAcceptMeetingApp" parameterType="int">
+		UPDATE meet_apps SET acceptance = 'A'
+		WHERE no=#{no}
+	</update>
+	
+	<update id="updateAcceptMeetingAppAfter">
+		UPDATE meet_apps SET acceptance='R'
+		WHERE meeting_no = #{no} AND acceptance='W'
+	</update>
+	
+	<update id="updateRejectMeetingApp" parameterType="int">
+		UPDATE meet_apps SET acceptance='R'
+		WHERE no=#{no}
+	</update>
+	<!-- 20210122 end -->
+
+	<!--박형우 end-->
+	
+	<!-- 정진하 2021 01 22  -->
+	<select id="selectCrewInteractingWith" parameterType="int" resultType="Crew">
+	SELECT c.name name, c.cover_img coverImg
+	FROM meet_apps ms JOIN crews c ON ms.apply_crew_no = c.no
+	WHERE acceptance = 'A' AND ms.meeting_no = #{meetingNo}
+	ORDER BY ms.meeting_no
+	</select>
+	<!-- 정진하 -->
+	<!-- 송진현 -->
+	<insert id="insert" parameterType="MeetApp">
+	INSERT INTO meet_apps(no,regdate,meeting_no,apply_crew_no,acceptance,introduce)
+	VALUES(meet_apps_seq.nextval,sysdate,#{meetingNo},#{applyCrewNo},'W',#{introduce})
+</insert>
+
+<insert id="update" parameterType="MeetApp">
+	UPDATE meet_apps
+	set acceptance = 'A'
+	where meeting_no=#{meetingNo} AND apply_crew_no=#{applyCrewNo}
+</insert>
+	<!-- 송진현 -->
+</mapper>  
+

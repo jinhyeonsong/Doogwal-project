@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boards">
+
+
+	<select id="selectBoards" parameterType="int" resultType="Board">
+		SELECT no, name, regdate, crew_no crewNo
+		FROM boards
+		WHERE crew_no = #{no}
+	</select>
+
+	<insert id="insertPlusBoard" parameterType="Board">
+		<selectKey order="BEFORE" resultType="int" keyProperty="no">
+			SELECT BOARDS_SEQ.nextval
+			FROM dual
+		</selectKey>
+		INSERT INTO boards(no, name, regdate, crew_no)
+		VALUES(#{no}, #{name}, systimestamp, #{crewNo})
+	</insert>
+	
+	<insert id="insertBoard" parameterType="Board">
+		INSERT INTO boards(no, name, regdate, crew_no)
+		VALUES(boards_seq.nextval, #{name}, systimestamp, #{crewNo})
+	</insert>
+</mapper>

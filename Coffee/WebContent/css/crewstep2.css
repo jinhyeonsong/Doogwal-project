@@ -1,0 +1,140 @@
+@charset "UTF-8";
+.crew_create_box{
+    position: relative;
+    width: 1080px;
+}
+.crew_create_box h2{
+    font-size: 30px;
+    font-weight: 900;
+}
+.crew_create_input_name_box{
+    width: 420px;
+    height: 100px;
+    margin:0 0 30px 0;
+    position:relative;
+}
+.crew_create_input_intro_box{
+    width: 520px;
+    height: 100px;
+    margin:40px 0 20px 0;
+    position:relative;
+}
+.crew_name_input,.crew_intro_input, .crew_population_input:focus{/*<input> 포커스시 보더*/
+    outline-color: #ff6333;
+
+}
+
+.crew_intro_input {
+    width: 500px;
+    height: 40px;
+    padding:8px 10px;
+    margin-top:10px;
+    font-size: 20px;
+}
+.crew_name_input {
+    width: 400px;
+    height: 40px;
+    padding:8px 10px;
+    margin-top:10px;
+    font-size: 20px;
+}
+.crew_name_input + span{
+    position:absolute;
+    font-size: 12px;
+    right: 5px;
+    bottom: 5px;
+}
+.crew_intro_input + span{
+    position:absolute;
+    font-size: 12px;
+    right: 5px;
+    bottom: 5px;
+}
+.crew_create_cover_box{
+    width: 930px;
+    height: 250px;
+    position: relative;
+}
+.crew_create_cover_inner{
+    margin-top:10px;
+}
+.crew_image_selected{
+    float:left;
+    width: 280px;
+}
+.crew_image_list{
+    float:right;
+    width: 640px;
+}
+.crew_image_item{
+    position: relative;
+    float: left;
+    width: 150px;
+    height: 100px;
+    margin:5px;
+    cursor: pointer;
+}
+.crew_create_btn_box{
+    text-align: center;
+    position:relative;
+    height: 50px;
+    padding:25px 0;
+}
+.next_btn_step2{
+    width: 200px;
+    height: 50px;
+    background-color: #eeeeee;
+    outline: none;
+    border: none;
+}
+.on_background{
+    background-color: #FF6333;
+    color: red;
+}
+
+.crew_image_item input{
+    width: 150px;
+    height: 100px;
+    background-color: #4b96e6;
+}
+.crew_image_item input[type="radio"]{
+    display: none;
+}
+
+.crew_image_item input[type="radio"]:checked + label .crew_cover_check{
+    display: block;
+}
+.crew_image_item input[type="radio"] + label{
+    width: 150px;
+    height: 100px;
+    cursor: pointer;
+    display: block;
+}
+
+.crew_cover_check{
+    width: 150px;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(255,99,51,.5);
+    display: none;
+}
+.crew_cover_check i{
+    position:absolute;
+    left: 50px;
+    top:25px;
+    font-size: 50px;
+    color:#eee;
+}
+
+/*사진추가*/
+.category_upload_image{
+    background-color: #424242;
+    width: 150px;
+    height: 60px;
+    padding:20px 0;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+}

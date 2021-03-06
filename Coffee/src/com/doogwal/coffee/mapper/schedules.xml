@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	
+"-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="schedules">
+	<!--박형우 start-->
+	<!--20210114 start-->
+	
+	<select id="selectUpcommingGathring" parameterType="int" resultType="Gathering">
+		SELECT schedules.NO, START_DATE startDate, END_DATE endDate, NAME, ADDRESS, DESCRIPTION, LAT, LNG, gatherings.REGDATE, DISTRICT_NO districtNo, TYPE, CREW_NO crewNo, fee
+		from schedules JOIN gatherings ON schedules.no = gatherings.no
+		where type='G' and start_date = (SELECT min(start_date)
+							FROM schedules
+							where crew_no=#{no} and TO_CHAR(start_date,'YYYY-MM-DD HH:mm:ss') > TO_CHAR(sysdate,'YYYY-MM-DD HH:mm:ss'))
+	</select>
+	
+	<select id="selectUpcommingMeeting" parameterType="int" resultType="Meeting">
+		SELECT schedules.NO, START_DATE startDate, END_DATE endDate, NAME, ADDRESS, DESCRIPTION, LAT, LNG, schedules.REGDATE, DISTRICT_NO districtNo, TYPE, CREW_NO crewNo, img, point, category_no categoryNo, theme_no themeNo, place, confirmation
+		from schedules JOIN meetings ON schedules.no = meetings.no
+		where (type='M' or type='F') and start_date = (SELECT min(start_date)
+														FROM schedules
+														where crew_no=#{no} and TO_CHAR(start_date,'YYYY-MM-DD HH:mm:ss') > TO_CHAR(sysdate,'YYYY-MM-DD HH:mm:ss'))
+	</select>
+	
+	<!--20210114 end-->
+	<!--20210123 start-->
+
+	<insert id="insertMakingMeeting" parameterType="Meeting">
+		<selectKey order="BEFORE" resultType="int" keyProperty="no">
+			SELECT schedules_seq.nextval
+			FROM dual
+		</selectKey>
+		INSERT INTO schedules(NO, START_DATE, END_DATE, NAME, ADDRESS, DESCRIPTION, LAT, LNG, REGDATE, DISTRICT_NO, TYPE, CREW_NO)
+		VALUES(#{no}, #{startDate}, #{endDate}, #{name}, #{address}, #{description}, #{lat}, #{lng}, systimestamp, #{districtNo}, #{type}, #{crewNo})
+	</insert>
+
+	<!--20210123 end-->
+	<!-- 20210130 start -->
+	
+	<insert id="insertAcceptMeeing" parameterType="Meeting">
+		<selectKey order="BEFORE" resultType="int" keyProperty="no">
+			SELECT schedules_seq.nextval
+			FROM dual
+		</selectKey>
+		INSERT INTO schedules(NO, START_DATE, END_DATE, NAME, ADDRESS, DESCRIPTION, LAT, LNG, REGDATE, DISTRICT_NO, TYPE, CREW_NO)	
+		VALUES(#{no}, #{startDate}, #{endDate}, #{name}, #{address}, #{description}, #{lat}, #{lng}, systimestamp, #{districtNo}, #{type}, #{crewNo})
+	</insert>
+	
+	<select id="selectOneScheduleInformation" parameterType="int" resultType="Meeting">
+		SELECT NO, START_DATE startDate, END_DATE endDate, NAME, ADDRESS, DESCRIPTION, LAT, LNG, REGDATE, DISTRICT_NO districtNo, TYPE, CREW_NO crewNo
+		FROM schedules
+		WHERE no = #{no}
+	</select>
+	
+	<!-- 20210130 end -->
+	<!--박형우  end-->
+	<!--송진현  start-->
+	<insert id="insert" parameterType="Gathering">
+		<selectKey order="BEFORE" resultType="int" keyProperty="no">
+			SELECT schedules_seq.nextval
+			FROM dual
+		</selectKey>
+		INSERT INTO schedules(no, start_date, end_date, name, address, description, lat, lng, regdate, district_no, type, crew_no)
+		VALUES(#{no}, #{startDate}, #{endDate}, #{name}, #{address}, #{description}, #{lat}, #{lng}, systimestamp, #{districtNo}, #{type}, #{crewNo})
+	</insert>
+	
+	<select id="selectOne" resultType="Gathering" parameterType="int">
+		SELECT district_no districtNo,crew_no crewNo,type,start_date startDate,end_date endDate,name,address,description,lat,lng
+		FROM schedules
+		WHERE no=#{no}
+	</select>
+	<!--송진현  end-->
+	
+	<!-- 정진하 2021 01 21 크루상세페이지 일별 일정 리스트 가져오기 -->
+	<select id="selectDailySchedules" resultType="Meeting" parameterType="java.util.Map">
+		SELECT no, name, start_date startDate, type
+		FROM schedules
+		WHERE TO_CHAR(start_date,'YYYY-MM-DD') = #{startDate} AND crew_no = #{crewNo}
+		ORDER BY no
+	</select>
+	
+	<!-- 정진하 2021 01 23 크루상세페이지 모든 일정 리스트 가져오기 -->	
+	<select id="selectAllSchedules" resultType="Meeting" parameterType="int">
+		SELECT no, name, start_date startDate, type
+		FROM schedules
+		WHERE crew_no = #{crewNo} and start_date >= systimestamp
+		ORDER BY no
+	</select>
+
+	<!-- 정진하 2021 01 23 크루상세페이지 월간 일정 리스트 가져오기 -->	
+	<select id="selectMonthlySchedules" resultType="Meeting" parameterType="int">
+		SELECT name, start_date startDate
+		FROM schedules
+		WHERE crew_no=#{crewNo}
+	</select>
+	
+	<!-- 정진하 2021 01 17 main 최신순으로 모임 가져옴-->
+	<select id="selectUpcomingGatheringList" resultType="Gathering">
+		SELECT s.no, s.district_no districtNo, s.crew_no crewNo , s.type, s.start_date startDate,
+		s.end_date endDate, s.regdate, s.name, s.address, s.description, s.lat, s.lng, g.fee,
+		c.name crewName, c.cover_img crewCoverImg
+		FROM schedules s, crews c, gatherings g
+		WHERE s.crew_no = c.no and s.no = g.no AND rownum between 1 and 7
+		ORDER BY s.regdate desc
+	</select>
+	
+	<select id="selectMeetingListFromToday" resultType="Meeting">
+		SELECT s.no, s.crew_no crewNo, s.name, s.start_date startDate, m.point, m.place, m.img, c.name crewName, s.type
+		FROM schedules s, meetings m, crews c
+		WHERE s.start_date >= systimestamp AND s.crew_no = c.no AND s.no = m.no
+		ORDER BY s.no
+	</select>
+	
+	<!-- 정진하 2021 01 24 밋팅메인에서 신청가능한 밋팅목록 가져오기 위해 작성함 -->	
+	<select id="selectMeetingListByThemeNo" resultType="Meeting" parameterType="int">
+		SELECT s.no, s.crew_no crewNo, s.name, s.start_date startDate, m.point, m.place, m.img, c.name crewName
+		FROM schedules s, meetings m, crews c
+		WHERE m.theme_no = #{themeNo} and s.no = m.no and s.crew_no = c.no 
+		ORDER BY s.no
+	</select>
+	
+	<select id="selectMeetingListByDateRange" resultType="Meeting" parameterType="java.util.Map">
+		SELECT s.no, s.crew_no crewNo, s.name, s.start_date startDate, m.point, m.place, m.img, c.name crewName
+		FROM schedules s, meetings m, crews c
+		WHERE s.start_date BETWEEN TO_DATE(#{startFrom},'YYYY-MM-DD') and TO_DATE(#{endHere},'YYYY-MM-DD')
+		AND s.crew_no = c.no AND s.no = m.no
+		ORDER BY s.no
+	</select>
+	
+	<select id="selectMeetingListByUsingLocationInfo" resultType="Meeting" parameterType="String">
+	SELECT s.no, s.crew_no crewNo, s.name, s.start_date startDate, m.point, m.place, m.img, c.name crewName
+	FROM schedules s, meetings m, crews c
+	WHERE s.address LIKE #{locationInfo2} AND s.crew_no = c.no AND s.no = m.no AND s.start_date >= systimestamp
+	ORDER BY s.no
+	</select>
+	<!--20210129 정진하 밋팅메인에서 카테고리 상위번호에 맞게 밋팅 목록 가져오기 위해 작성함 -->
+	<select id="selectMeetingListByCategoryNo" resultType="Meeting" parameterType="int">
+		SELECT s.no, s.crew_no crewNo, s.name, s.start_date startDate, m.point, m.place, m.img, c.name crewName
+		FROM schedules s, meetings m, crews c, categories t
+		WHERE m.category_no = t.no and s.no = m.no and s.crew_no = c.no and t.prior_no=#{categoryNo}
+		ORDER BY s.no
+	</select>
+	<!--20210129 정진하 밋팅메인에서 연령대 선택에 맞게 밋팅 목록 가져오기 위해 작성함 -->
+	<select id="selectMeetingListByAgeGroup" resultType="Meeting" parameterType="java.util.Map">
+		SELECT s.no, s.crew_no crewNo, s.name, s.start_date startDate, m.point, m.place, m.img, c.name crewName
+		FROM schedules s, meetings m, crews c
+		WHERE s.no = m.no and s.crew_no = c.no and c.avg_age BETWEEN #{minAge} AND #{maxAge}
+		ORDER BY s.no
+	</select>
+	<!-- 정진하 -->
+	
+<!-- 20210124 밋팅히스토리(대결,친목) 카운트 이아림 -->
+<select id="selectHistoryCount" parameterType="int" resultType="map" >
+SELECT(SELECT count(*)
+FROM schedules s, meet_apps m
+WHERE s.no = m.meeting_no
+AND s.type = 'M'
+AND m.acceptance = 'A'
+AND systimestamp > s.end_date
+AND 
+(s.crew_no = #{crewNo} or m.apply_crew_no = #{crewNo}) ) MATCHCOUNT,
+(SELECT count(*)
+FROM schedules s, meet_apps m
+WHERE s.no = m.meeting_no
+AND s.type = 'F'
+AND m.acceptance = 'A'
+AND systimestamp > s.end_date
+AND 
+(s.crew_no = #{crewNo} or m.apply_crew_no = #{crewNo}) ) FELLOWSHIPCOUNT
+FROM dual
+<!--// 20210124 밋팅히스토리(대결,친목) 카운트 이아림 -->
+	 
+</select>
+
+</mapper>  
+
+

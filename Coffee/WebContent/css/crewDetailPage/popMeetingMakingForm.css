@@ -1,0 +1,539 @@
+/*0) 공통 css*/
+#meetingMakingWrap{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 100;
+    display: none;
+}
+#meetingMakingWrap>.close_btn{
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    font-size: 60px;
+    color: #7a7a7a;
+    cursor: pointer;
+    z-index: 3;
+}
+#meetingMakingWrap>.close_btn:hover{
+    color: #FFAB40;
+}
+#meetingMakingContainer{
+    width: 540px;
+    height: auto;
+    position: absolute;
+    padding: 20px 40px;
+    top: 50%;
+    left: 50%;
+    margin-left: -270px;
+    margin-top: -348px;
+    background-color: white;
+}
+
+#containerTitleBox{
+    height: 41px;
+    text-align: center;
+    padding: 4px 0;
+    border-bottom: 1px solid #bababa;
+}
+#containerTitleBox>span{
+    font-size: 36px;
+}
+
+#meetingMakingProgressBox{
+    padding: 4px 50px;
+    border-bottom: 1px solid #bababa;
+
+}
+.progress_item{
+    width: 0;
+    display: inline-block;
+    border-top: 35px solid transparent;
+    border-bottom: 35px solid transparent;
+    border-left: 45px solid #E0E0E0;
+    margin-right: 50px;
+    position: relative;
+}
+.progress_item:first-child{
+    border-left: 45px solid #FFAB40;
+}
+.progress_item>p{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: -36px;
+    margin-top: -13px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+.progress_item:last-child{
+    margin-right: 0;
+}
+#meetingMakingContents{
+    padding: 0 50px;
+}
+#meetingMakingContainer>.fa-angle-left{
+    position: absolute;
+    font-size: 60px;
+    left: 0;
+    top: 0;
+    margin: 245px 0 0 8px;
+    cursor: pointer;
+}
+#meetingMakingContainer>.fa-angle-right{
+    position: absolute;
+    font-size: 60px;
+    right: 0;
+    top: 0;
+    margin: 245px 8px 0 0;
+    cursor: pointer;
+}
+#meetingMakingContainer>i:hover{
+    color: #FFAB40;
+}
+#meetingMakingContainer[class="meetingMakingStep5"]>.fa-angle-right{
+    display: none;
+}
+#meetingMakingContainer[class="meetingMakingStep1"]>.fa-angle-left{
+    display: none;
+}
+/*------------------------------------------------------------------------------*/
+
+
+/* 팜업창 화면 넘어가기 */
+.meetingMakingStep1 .essential_step{display: block}
+.meetingMakingStep1 .location_step{display: none}
+.meetingMakingStep1 .additional_step{display: none}
+.meetingMakingStep1 .rule_step{display: none}
+.meetingMakingStep1 .confirm_step{display: none}
+
+.meetingMakingStep2 .essential_step{display: none}
+.meetingMakingStep2 .location_step{display: block}
+.meetingMakingStep2 .additional_step{display: none}
+.meetingMakingStep2 .rule_step{display: none}
+.meetingMakingStep2 .confirm_step{display: none}
+
+.meetingMakingStep3 .essential_step{display: none}
+.meetingMakingStep3 .location_step{display: none}
+.meetingMakingStep3 .additional_step{display: block}
+.meetingMakingStep3 .rule_step{display: none}
+.meetingMakingStep3 .confirm_step{display: none}
+
+.meetingMakingStep4 .essential_step{display: none}
+.meetingMakingStep4 .location_step{display: none}
+.meetingMakingStep4 .additional_step{display: none}
+.meetingMakingStep4 .rule_step{display: block}
+.meetingMakingStep4 .confirm_step{display: none}
+
+.meetingMakingStep5 .essential_step{display: none}
+.meetingMakingStep5 .location_step{display: none}
+.meetingMakingStep5 .additional_step{display: none}
+.meetingMakingStep5 .rule_step{display: none}
+.meetingMakingStep5 .confirm_step{display: block}
+/*------------------------------------------------------------------------------*/
+
+/*1) essential_step css*/
+#meetingMakingWrap[class="meetingMakingStep1"]>.fa-angle-left{
+    display: none;
+}
+.meeting_part_box, .meeting_name_box, .theme_box, .calender_box, .time_box{
+    text-align: center;
+    font-size: 23px;
+    margin: 15px 0;
+}
+.theme_box, .calender_box{
+    margin-top: 40px;
+}
+.calender_box>label{
+    margin-left: -150px;
+}
+.calender_box>.tui-datepicker-input{
+    width: 172px;
+    height: 34px;
+    margin-top: -4px;
+    margin-left: 12px;
+}
+.calender_box #datepicker-input{
+    font-size: 16px;
+}
+.calender_box #datePickerWrapper{
+    margin-top: -1px;
+    margin-left: 20px;
+}
+#datePickerWrapper>.tui-datepicker{
+    z-index: 100;
+}
+.time_box{
+    width: 440px;
+    margin-top: 40px;
+    position: relative;
+}
+.time_box>label{
+    margin-left: -344px;
+    vertical-align: middle;
+}
+#timePickerWrapper>.tui-timepicker{
+    background-color: transparent;
+    border: none;
+    width: 150px;
+    padding: 0;
+    display: inline-block;
+    margin-left: -145px;
+    margin-top: -50px;
+    vertical-align: middle;
+}
+#timePickerWrapper2>.tui-timepicker{
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    padding: 0;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: -100px;
+    vertical-align: middle;
+}
+#timePickerWrapper>.tui-timepicker>.tui-timepicker-body{
+    width: 150px;
+}
+#timePickerWrapper2>.tui-timepicker>.tui-timepicker-body{
+    width: 150px;
+}
+#timePickerWrapper>.tui-timepicker>.tui-timepicker-body .tui-timepicker-btn, #timePickerWrapper2>.tui-timepicker>.tui-timepicker-body .tui-timepicker-btn{
+    width: 42px;
+}
+#timePickerWrapper>.tui-timepicker>.tui-timepicker-body .tui-timepicker-spinbox-input, #timePickerWrapper2>.tui-timepicker>.tui-timepicker-body .tui-timepicker-spinbox-input{
+    width: 42px;
+    height: 30px;
+}
+#timePickerWrapper>.tui-timepicker>.tui-timepicker-body .tui-timepicker-btn-area, #timePickerWrapper2>.tui-timepicker>.tui-timepicker-body .tui-timepicker-btn-area{
+    width: 42px;
+    height: 69px;
+}
+#timePickerWrapper>.tui-timepicker>.tui-timepicker-body .tui-timepicker-check-area, #timePickerWrapper2>.tui-timepicker>.tui-timepicker-body .tui-timepicker-check-area{
+    margin-top: -10px;
+}
+#timePickerWrapper>.tui-timepicker>.tui-timepicker-body .tui-timepicker-checkbox, #timePickerWrapper2>.tui-timepicker>.tui-timepicker-body .tui-timepicker-checkbox{
+    padding: 0;
+}
+#timePickerWrapper>.tui-timepicker>.tui-timepicker-body>.tui-timepicker-row>.tui-timepicker-column:nth-child(1), #timePickerWrapper2>.tui-timepicker>.tui-timepicker-body>.tui-timepicker-row>.tui-timepicker-column:nth-child(1){
+    width: 42px;
+}
+.time_box>span{
+    display: inline-block;
+    position: absolute;
+    top:0;
+    margin-left: -10px;
+
+}
+#partDropdown, #themeDropdown{
+    width: 320px;
+    height: 34px;
+    font-size: 17px;
+    margin-left: 10px;
+}
+.meeting_name_box{
+    position: relative;
+}
+#meetingNameInput{
+    width: 320px;
+    height: 28px;
+    font-size: 20px;
+    margin-left: 10px;
+}
+.text_length_notice, .text_length{
+    color: #d50000;
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    right: 35px;
+    margin-top: 45px;
+}
+.all_day_btn_box{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0 0 -19px 79px;
+    font-size: 16px;
+}
+#allDayBtn{
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+#allDayBtn+label{
+    vertical-align: middle;
+}
+
+#datePickerValueTube, #timePickerValueTube, #timePickerValueTube2{
+    display: none;
+}
+/*------------------------------------------------------------------------------*/
+
+/*2) location_step css*/
+.meeting_address_box{
+    text-align: center;
+    font-size: 23px;
+    margin: 15px 0;
+    position: relative;
+}
+#sample5_address, #specifyAddressInput{
+    width: 320px;
+    height: 34px;
+    font-size: 19px;
+    margin-left: 10px;
+}
+.meeting_address_box>input[type="button"]{
+    position: absolute;
+    width: 326px;
+    height: 38px;
+    top: 1px;
+    right: 25px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#map{
+    width:400px;
+    height:300px;
+    margin-top:15px;
+    margin-left: 14px;
+    /*display:none;*/
+    border: 1px solid #757575
+}
+#specifyAddressInput {
+    margin-top: 10px;
+    margin-left: 63px;
+}
+/*------------------------------------------------------------------------------*/
+
+/*3)additional_step css*/
+.meeting_category_box, .meeting_point_box, .meeting_explanation_box{
+    text-align: center;
+    font-size: 23px;
+    margin: 15px 0;
+}
+.meeting_explanation_box{
+    margin-top: 30px;
+}
+.meeting_point_box>label{
+    margin-left: -10px;
+}
+.meeting_explanation_box>label{
+    margin-left: -30px;
+}
+#meetingCategoryChoice, #meetingPointInput, #meetingExplanationInput{
+    width: 320px;
+    height: 34px;
+    font-size: 19px;
+}
+#meetingCategoryChoice{
+    margin-left: 10px;
+}
+#meetingPointInput{
+    margin-left: -2px;
+}
+#meetingExplanationInput{
+    margin-left: -2px;
+}
+.meeting_point_box, .meeting_explanation_box{
+    position: relative;
+}
+.having_point, .explanation_length{
+    color: #303f9f;
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    right: 35px;
+    margin-top: 45px;
+    display: flex;
+    vertical-align: middle;
+}
+.having_point>img{
+    margin-right: 6px;
+}
+.meeting_image_box>i{
+    font-size: 40px;
+    margin-left: 30px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.meeting_image{
+    width: 324px;
+    height: 150px;
+    background-color: #EDEDED;
+    display: inline-block;
+    border-radius: 5px;
+    margin-left: 14px;
+    vertical-align: middle;
+    position: relative;
+    /*background-image: url("../../img/5.jpg");*/
+    background-size: cover;
+}
+.meeting_image>i{
+    color: #E0E0E0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+    cursor: pointer;
+}
+.meeting_image>input{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    box-sizing: content-box;
+    outline: none;
+    cursor: pointer;
+    opacity: 0;
+}
+.meeting_image:hover>i{
+    color: #FFAB40;
+}
+/*------------------------------------------------------------------------------*/
+
+/*4) rule_step css*/
+.meeting_rule_box, .meeting_material_box{
+    font-size: 23px;
+    margin: 15px 0;
+    position: relative;
+    text-align: center;
+}
+.meeting_material_box label{
+    margin-left: -10px;
+}
+#meetingRuleInput, #meetingMaterialInput{
+    width: 320px;
+    height: 32px;
+    font-size: 20px;
+    margin-left: 10px;
+}
+#meetingMaterialInput{
+    margin-left: -2px;
+}
+.rule_length, .material_length{
+    color: #303f9f;
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    right: 35px;
+    margin-top: 45px;
+}
+.rule_number{
+    color: #303f9f;
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    right: 120px;
+    margin-top: 45px;
+}
+.meeting_rule_box>button, .meeting_material_box>button{
+    position: absolute;
+    font-size: 20px;
+    width: 59px;
+    height: 36px;
+    top: 1px;
+    right: 25px;
+    background-color: #757575;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.rules_box, .materials_box{
+    margin-top: 33px;
+    font-size: 17px;
+    position: relative;
+    text-align: initial;
+}
+.rule_item, .material_item{
+    display: inline-block;
+    padding: 5px 5px 5px 10px;
+    background-color: #EDEDED;
+    border-radius: 5px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+.rule_item>span, .material_item>span{
+    margin-right: 8px;
+}
+.rule_item>button, .material_item>button{
+    border: none;
+    outline: none;
+    font-size: 18px;
+    color: #E8AB2E;
+    cursor: pointer;
+}
+.meeting_material_box>button{
+    right: 24px;
+}
+/*------------------------------------------------------------------------------*/
+
+/*5) confirm_step css*/
+.confirm_shape_box{
+    width: 260px;
+    height:220px;
+    margin-left: 30px;
+    margin-top: 50px;
+    /*background-color: red;*/
+}
+.confirm_meeting_text{
+    width: 180px;
+    height: 80px;
+    margin: 14px auto 0 auto;
+}
+.confirm_betting_point{
+    color: #FFAB40;
+}
+.confirm_betting_point>img{
+    margin-right: 6px;
+    vertical-align: middle;
+}
+.confirm_crew_name{
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+.confirm_meeting_name{
+    font-size: 17px;
+    margin-top: 3px;
+}
+.confirm_meeting_name>img{
+    margin-left: 4px;
+}
+.confirm_meeting_location{
+    font-size: 15px;
+    margin-top: 3px;
+}
+.confirm_btn{
+    width: 100px;
+    height: 48px;
+    position: absolute;
+    top: 270px;
+    right: 60px;
+}
+.confirm_btn>button{
+    display: block;
+    width: 100px;
+    height: 48px;
+    background-color: #FFAB40;
+    font-family: 'NIXGONM-Vb', sans-serif;
+    font-size: 19px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+.confirm_btn>button:hover{
+    color: white;
+}
+/*------------------------------------------------------------------------------*/
