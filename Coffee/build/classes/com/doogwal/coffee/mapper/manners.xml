@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	
+"-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="manners">
+
+<!-- 주성호 -->
+<insert id="insert" parameterType="Manner">
+	INSERT INTO manners(no, manner, competence,harmony,eagerness,unity,rater_no,ratee_no,meeting_no)
+	VALUES(manners_seq.nextval,#{manner},#{competence},#{harmony},#{eagerness},#{unity},#{raterNo},#{rateeNo},#{meetingNo})
+</insert>
+<!-- end 주성호 -->
+
+</mapper>  
+

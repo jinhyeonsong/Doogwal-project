@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reports">
+
+	<!--      2021 01 14  성호 part start    -->
+	<!-- 신고하기 -->
+	<insert id="insertReport" parameterType="Report">
+		INSERT INTO reports(no,type,regdate,post_no,member_no,reporter)
+		VALUES(REPORTS_SEQ.nextval,#{type},systimestamp,#{postNo},#{memberNo},#{reporter})
+	</insert>
+	
+	<!-- 신고 불러오기 -->
+	<select id="selectReportPost" parameterType="int" resultType="Report">
+		SELECT r.no rNo, r.member_no memberNo, r.regdate,u.name name, c.profile_img profileImg, r.type
+		FROM users u,crew_members c LEFT JOIN reports r
+		ON c.no = r.reporter
+		WHERE r.post_no = #{postNo}
+		AND u.no = c.user_no
+	</select>
+	<!--      2021 01 14  성호 part start    -->
+	
+	<!-- 삭제하기 -->
+	<insert id="deleteReport" parameterType="int">
+		DELETE
+		FROM reports
+		WHERE post_no = #{postNo}
+	</insert>
+	
+</mapper>

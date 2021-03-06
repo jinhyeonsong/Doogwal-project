@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="attendances">
+	<!--박형우 start -->
+	<!--20210114 start -->
+	<select id="selectYAttendance" parameterType="int" resultType="Attendance">
+		SELECT NO, ATTENDANCE, SCHEDULE_NO scheduleNo, MEMBER_NO memberNo, REGDATE	
+		FROM attendances
+		WHERE SCHEDULE_NO = #{no} and attendance='Y'
+	</select>
+	
+	<select id="selectYAttendanceCount" parameterType="int" resultType="int">
+		SELECT count(*)
+		FROM attendances
+		WHERE SCHEDULE_NO = #{no} and attendance='Y'
+	</select>
+
+	<select id="selectYAttendanceList" parameterType="int" resultType="CrewMember">
+		SELECT crew_members.NO, CREW_NO crewNo, USER_NO userNo, ROLE, REPORT_NUM reportNum, PROFILE_IMG profileImg, INTRODUCTION, TYPE, crew_members.REGDATE	
+		FROM attendances JOIN crew_members ON attendances.member_no = crew_members.no
+		WHERE attendance='Y' and schedule_no = #{no}
+	</select>
+	<!--20210114 end -->
+	<!--박형우  end -->
+	
+	<!--2021 01 21 정진하 일정캘린더에서 참가자 수 뽑아오기 위함 -->
+	<select id="selectTotalParticipants" resultType="int" parameterType="int">
+		SELECT COUNT(*)
+		FROM attendances
+		WHERE attendance='Y' and schedule_no=#{scheduleNo}
+	</select>
+	<select id="selectTotalNonParticipants" resultType="int" parameterType="int">
+		SELECT COUNT(*)
+		FROM attendances
+		WHERE attendance='N' and schedule_no=#{scheduleNo}
+	</select>
+	<!-- 정진하 -->
+<!-- 송진현 -->
+<select id="selectList" parameterType="int" resultType="Attendance">
+		SELECT attendance, a.member_no memberNo,c.profile_img profileImg
+		FROM attendances a, crew_members c
+		WHERE a.member_no=c.no AND schedule_no=#{no}
+	</select>
+	
+	<update id="update" parameterType="Attendance">
+		UPDATE attendances 
+		SET  attendance = #{attendance}
+		WHERE member_No = #{memberNo} AND schedule_No = #{scheduleNo}
+	</update>
+	
+	<insert id="insertList" parameterType="Attendance">
+    INSERT INTO attendances(NO,ATTENDANCE,SCHEDULE_NO,MEMBER_NO,REGDATE)
+    VALUES(attendances_seq.nextval,'N',#{scheduleNo},#{memberNo},systimestamp)
+</insert>
+<!-- end 송진현 -->
+</mapper>  
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="applycrews">
+
+<select id="selectList" parameterType="int" resultType="ApplyCrew">
+    select m.apply_crew_no applyCrewNo,m.introduce,m.acceptance, c.name, c.cover_img coverImg, SUBSTR(XMLAGG(XMLELEMENT(COL ,',', r.type) ).extract('//text()').GETSTRINGVAL(), 2) type
+	from meet_apps m, crews c, records r
+	where m.meeting_no =#{no} AND m.apply_crew_no =c.no(+) AND c.no = r.crew_no(+)
+	GROUP BY m.apply_crew_no,m.apply_crew_no,m.introduce,m.acceptance, c.name, c.cover_img
+	order by 3 
+</select>
+    
+</mapper>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="crews">
+
+<!-- 주성호 2021 01 11 header start-->
+	<select id="selectOwnList" parameterType="int"  resultType="Crew">
+		SELECT c.no, c.name, c.cover_img coverImg,c.intro,min_age minAge,max_age maxAge,max_pop maxPop,cur_pop curPop,category_no categoryNo,c.regdate,avg_age avgAge,gender_rate genderRate,point
+		FROM crew_members m, crews c
+		WHERE m.user_no=#{no} AND m.crew_no = c.no
+		ORDER BY 1
+	</select>
+	
+	<select id="selectCrewByName" parameterType="String" resultType="int">
+		SELECT no
+		FROM crews
+		WHERE name=#{name}
+	</select>
+	
+	<!-- 주성호 2021 01 11 check name-->
+	<select id="selectCheckName" parameterType="String"  resultType="int">
+		SELECT COUNT(*)
+		FROM crews
+		WHERE name = #{name}
+	</select>
+	<!-- 주성호 2021 01 11 end-->
+	
+	<!-- 주성호 2021 01 25 크루 삽입-->
+	<insert id="insertCrew" parameterType="Crew" useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+		INSERT INTO crews(no, name, cover_img, intro, min_age, max_age, max_pop, cur_pop, category_no,gender_rate,avg_age,point, regdate)
+		VALUES(crews_seq.nextval, #{name},#{coverImg} ,#{intro}, #{minAge}, #{maxAge}, #{maxPop},#{curPop} ,#{categoryNo},#{genderRate},#{avgAge},#{point} , systimestamp)
+	</insert>
+	<!-- 주성호 2021 01 25 크루 삽입-->
+	
+	<!--박형우 start-->
+	<!--20210114 start-->
+	<select id="selectCrewAllInformation" parameterType="int" resultType="Crew">
+		SELECT NO, NAME, COVER_IMG coverImg, INTRO, MIN_AGE minAge, MAX_AGE maxAge, MAX_POP maxPop, CUR_POP curPop, CATEGORY_NO categoryNo, REGDATE, AVG_AGE avgAge, GENDER_RATE genderRate, POINT
+		FROM crews
+		where no=#{no}	
+	</select>
+
+	<!--20210114 end-->
+	<!--20210117 start-->
+
+	<update id="updateCrewPoint" parameterType="java.util.Map">
+		UPDATE crews SET point = point+(#{point})
+		WHERE no=#{no}
+	</update>
+	
+	<select id="selectOrganizeMeetingCrew" parameterType="int" resultType="int">
+		SELECT crew_no
+		FROM schedules s JOIN meetings m ON s.no = m.no
+		WHERE m.no=#{no} 
+	</select>
+	<!--20210117 end-->
+	<!--박형우  end-->
+	
+	
+	
+	
+	<!--이아림 20210114 searchList(동적쿼리) start -->
+<select id="selectSearchList"  resultType="Crew" parameterType="map">
+	SELECT coverImg, name, intro, categoryNo,avgAge,curPop,genderRate,maxAge, minAge,no,point,maxPop
+	FROM(
+		SELECT coverImg, name, intro, categoryNo,avgAge,curPop,genderRate, maxAge, minAge,no,point,maxPop, rownum r
+		FROM(
+			SELECT COVER_IMG coverImg, NAME, INTRO, category_no categoryNo, avg_Age avgAge, CUR_POP curPop, gender_Rate genderRate,max_age maxAge, min_age minAge,no,point,max_pop maxPop
+			FROM crews
+			WHERE ADD_MONTHS(regdate, +6)>sysdate AND 30>CUR_POP
+			<if test="categoryNo != null">
+			AND category_no IN(SELECT no FROM categories c WHERE prior_no = #{categoryNo} OR c.no=#{categoryNo})
+			</if>
+			<if test="minAge != null">
+			AND avg_age BETWEEN #{minAge} AND #{maxAge}
+			</if>
+			<if test="searchResultLike != null">
+			AND (name LIKE #{searchResultLike} OR intro LIKE #{searchResultLike})
+		  	</if> 
+			ORDER BY CUR_POP ${order}
+			)
+		)
+	WHERE r BETWEEN #{start} AND #{end}
+</select>
+<!--이아림 20210114 searchList end -->
+
+
+<!-- 이아림 20210124 밋팅 히스토리 대결탭 크루리스트 start -->
+<select id="selectMatchHistoryList" parameterType="int" resultType="MatchCrew" >
+SELECT m.name meetingName,c.name crewName,m.start_date meetingDate,m.meeting_no no,c.cover_img crewImg,r.win win,r.lose lose,r.draw draw,m.r1CrewNo HomeCrewNo,m.type homeType,m.r2CrewNo awayCrewNo,m.awayType awayType
+FROM(SELECT m.apply_crew_no crew_no,s.name name,s.start_date start_date,s.no meeting_no, rec.type, rec.r1CrewNo r1CrewNo, rec.r2CrewNo r2CrewNo,rec.awayType 
+	FROM 
+		(SELECT r1.no rNo1, r2.no rNo2, r1.type type,r2.type awayType,r1.meeting_no,r1.crew_no r1CrewNo, r2.crew_no r2CrewNo
+		FROM records r1 INNER JOIN records r2 ON r2.no>r1.no AND r1.meeting_no = r2.meeting_no
+		WHERE r1.crew_no = #{crewNo}) rec,
+		schedules s, meet_apps m
+	
+	WHERE s.no = m.meeting_no
+	AND s.type = 'M'
+	AND m.acceptance = 'A'
+	AND systimestamp > s.end_date
+	AND s.crew_no = rec.r1CrewNo
+	AND rec.r2CrewNo = m.apply_crew_no
+	AND rec.meeting_no = s.no
+
+	UNION
+	SELECT s.crew_no,s.name name,s.start_date start_date,s.no meeting_no, rec.type, rec.r1CrewNo r1CrewNo, rec.r2CrewNo r2CrewNo,rec.awayType 
+	FROM 
+		(SELECT r1.no rNo1, r2.no rNo2, r1.type type,r2.type awayType,r1.meeting_no,r1.crew_no r1CrewNo, r2.crew_no r2CrewNo
+		FROM records r1 INNER JOIN records r2 ON r1.no>r2.no AND r1.meeting_no = r2.meeting_no
+		WHERE r1.crew_no = #{crewNo}) rec,
+		schedules s, meet_apps m
+	WHERE s.type = 'M'
+	AND m.acceptance = 'A'
+	AND systimestamp > s.end_date
+	AND m.apply_crew_no = #{crewNo}
+	AND s.crew_no = rec.r2CrewNo
+	AND rec.r1CrewNo = m.apply_crew_no
+	AND rec.meeting_no = s.no
+
+	) m,
+ crews c,(SELECT w.no, win,lose,draw
+FROM(SELECT c.no, NVL(r.cnt,0) win
+FROM(SELECT crew_no, COUNT(*) cnt
+FROM records 
+WHERE type='W'
+GROUP BY crew_no) r, crews c
+WHERE c.no = r.crew_no(+)) w,
+
+(SELECT c.no, NVL(r.cnt,0) lose
+FROM(SELECT crew_no, COUNT(*) cnt
+FROM records 
+WHERE type='L'
+GROUP BY crew_no) r, crews c
+WHERE c.no = r.crew_no(+)) l,
+
+(SELECT c.no, NVL(r.cnt,0) draw
+FROM(SELECT crew_no, COUNT(*) cnt
+FROM records 
+WHERE type='D'
+GROUP BY crew_no) r, crews c
+WHERE c.no = r.crew_no(+)) d
+WHERE w.no = l.no AND l.no = d.no
+) r
+WHERE c.no = m.crew_no
+AND c.no = r.no
+</select>
+<!--// 이아림 20210124 밋팅 히스토리 대결탭 크루리스트 end -->
+
+<!-- 이아림 20210125 밋팅 히스토리 친목탭 크루리스트 start -->
+<select id="selectFellowshipHistoryList" parameterType="int" resultType="FellowshipCrew" >
+SELECT m.name meetingName,c.name crewName,m.start_date meetingDate,m.meeting_no no,c.cover_img crewImg,m.r1CrewNo HomeCrewNo,m.type homeType,m.r2CrewNo awayCrewNo,m.awayType awayType
+FROM(SELECT m.apply_crew_no crew_no,s.name name,s.start_date start_date,s.no meeting_no, rec.type, rec.r1CrewNo r1CrewNo, rec.r2CrewNo r2CrewNo,rec.awayType 
+	FROM 
+		(SELECT r1.no rNo1, r2.no rNo2, r1.type type,r2.type awayType,r1.meeting_no,r1.crew_no r1CrewNo, r2.crew_no r2CrewNo
+		FROM records r1 INNER JOIN records r2 ON r2.no>r1.no AND r1.meeting_no = r2.meeting_no
+		WHERE r1.crew_no = #{crewNo}) rec,
+		schedules s, meet_apps m
+	
+	WHERE s.no = m.meeting_no
+	AND s.type = 'F'
+	AND m.acceptance = 'A'
+	AND systimestamp > s.end_date
+	AND s.crew_no = rec.r1CrewNo
+	AND rec.r2CrewNo = m.apply_crew_no
+	AND rec.meeting_no = s.no
+	UNION
+	SELECT s.crew_no,s.name name,s.start_date start_date,s.no meeting_no, rec.type, rec.r1CrewNo r1CrewNo, rec.r2CrewNo r2CrewNo,rec.awayType 
+	FROM 
+		(SELECT r1.no rNo1, r2.no rNo2, r1.type type,r2.type awayType,r1.meeting_no,r1.crew_no r1CrewNo, r2.crew_no r2CrewNo
+		FROM records r1 INNER JOIN records r2 ON r1.no>r2.no AND r1.meeting_no = r2.meeting_no
+		WHERE r1.crew_no = #{crewNo}) rec,
+		schedules s, meet_apps m
+	WHERE s.type = 'F'
+	AND m.acceptance = 'A'
+	AND systimestamp > s.end_date
+	AND m.apply_crew_no = #{crewNo}
+	AND s.crew_no = rec.r2CrewNo
+	AND rec.r1CrewNo = m.apply_crew_no
+	AND rec.meeting_no = s.no
+	) m,crews c
+WHERE c.no = m.crew_no
+</select>
+<!--// 이아림 20210124 밋팅 히스토리 대결탭 크루리스트 end -->
+	
+	<!-- 정진하 2021 01 17 main start-->
+	<!-- 현재 날짜로부터 생성된지 6개월 미만의 크루들만 최신순으로 가져옴 -->
+	<select id="selectCrewsRecruiting" resultType="Crew">
+		SELECT no, name, cover_img coverImg, intro, min_age minAge, max_age maxAge, 
+		max_pop maxPop, cur_pop curPop, category_no categoryNo,
+		regdate, avg_age avgAge, gender_rate genderRate, point
+		FROM crews
+		WHERE ADD_MONTHS(regdate, 6) >= systimestamp AND rownum between 1 and 8
+		ORDER BY regdate desc
+	</select>
+	<!-- 정진하 2021 01 17 end-->
+	<!-- 송진현 -->
+<select id="select" parameterType="int" resultType="Crew">
+SELECT NO, NAME, COVER_IMG coverImg, INTRO, MIN_AGE minAge, MAX_AGE maxAge, MAX_POP maxPop, CUR_POP curPop, CATEGORY_NO categoryNo, REGDATE, AVG_AGE avgAge, GENDER_RATE genderRate, POINT
+FROM crews
+where no=#{no}	
+</select>
+<!-- end 송진현 -->
+	
+</mapper>

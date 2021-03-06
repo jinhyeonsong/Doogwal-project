@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="crewMembers">
+	<!--20210112 1615 주성호 헤더 -->
+	<select id="selectOwnList" parameterType="int"  resultType="CrewMember">
+		SELECT m.no, crew_no crewNo, user_no userNo, role, report_num reportNum, profile_img profileImg, introduction, type, m.regdate,cover_img coverImg, name
+		FROM crew_members m, crews c
+		WHERE m.user_no=#{no} AND m.crew_no = c.no
+		ORDER BY 9
+	</select>
+	
+	<!-- 2021 01 15 주성호 크루 멤버 넣기 -->
+	<insert id="insertCrewMemberByCaptin" parameterType="CrewMember">
+		INSERT INTO crew_members(no, CREW_NO, USER_NO, ROLE, REPORT_NUM, PROFILE_IMG, INTRODUCTION, TYPE, regdate)
+		VALUES(crew_members_seq.nextval, #{crewNo}, #{userNo}, #{role}, #{reportNum},#{profileImg},#{introduction},#{type}, systimestamp)
+	</insert>
+	
+	<!-- 2021 01 16 주성호 크루 멤버 한명 불러오기 -->
+	<select id="selectCrewMemberOneByNo" parameterType="int" resultType="UserMember">
+		SELECT c.no, crew_no crewNo,user_no userNo , role, report_num reportNum, profile_img profileImg, introduction, type, c.regdate, u.name
+		FROM crew_members c, users u
+		WHERE c.user_no = u.no
+		AND c.no = #{no}
+	</select>
+	
+	<!-- 2021 02 04 크루 report num 변경-->
+	<update id="updateReportCrewMember" parameterType="int">
+		UPDATE crew_members
+		SET report_num = report_num+1
+		WHERE no = #{no}
+	</update>
+	
+	<!--박형우 start-->
+	<!--20210114 start-->
+
+	<select id="selectWatingCrewMemberImgs" parameterType="int" resultType="String">
+			SELECT PROFILE_IMG profileImg
+			FROM crew_members
+			WHERE crew_no = #{no} AND type='W'
+			ORDER BY user_no
+	</select>
+	<!--20210114 end-->
+	<!--20210119 start -->
+	<select id="selectFormallyCrewMemberList" parameterType="int" resultType="FormallyCrewMemberJson">
+		SELECT u.name name, cm.profile_img profileImg, cm.role rank, cm.no crewMemberNo,cm.report_num reportNum
+		FROM crew_members cm JOIN users u ON cm.user_no = u.no 
+		WHERE crew_no=#{crewNo} AND type='A'
+	</select>
+	<!--20210119 end -->
+	<!--20210124 start -->
+	<update id="transformRankToOperator" parameterType="int">
+		UPDATE crew_members SET role='O'
+		WHERE no = #{no}
+	</update>
+	
+	<update id="transformRankToMember" parameterType="int">
+		UPDATE crew_members SET role='M'
+		WHERE no = #{no}
+	</update>
+		
+	<!--20210124 end -->
+	<!--20210125 end -->
+	
+	<select id="selectCrewMemberForKick" parameterType="int" resultType="CrewMember">
+		SELECT user_no userNo, crew_no crewNo
+		FROM crew_members
+		WHERE no=#{no}
+	</select>
+	<!--20210125 end -->
+	<!-- 20210211 start -->
+	
+	<update id="updateRegularMember" parameterType="java.util.Map">
+		UPDATE crew_members SET type='A' WHERE crew_no=#{crewNo} AND user_no=#{userNo}
+	</update>
+	
+	<delete id="deleteKickMember" parameterType="java.util.Map">
+		DELETE crew_members WHERE crew_no=#{crewNo} AND user_no=#{userNo}
+	</delete>
+	<!-- 20210211 end -->
+	<!--박형우  end-->
+
+	
+	<!-- 정진하 20210113 1936 마이페이지에서 프로필 사진 수정 후 업데이트 -->    
+	    <update id="updateProfileImage" parameterType="CrewMember">
+	   	 UPDATE crew_members
+	   	 SET profile_img = #{profileImg}
+	   	 WHERE no = #{no}
+	    </update>
+	<!--정진하  end -->
+	<!-- 송진현 -->
+	<select id="selectList" parameterType="int" resultType="CrewMember">
+		select no
+		from crew_members
+		where crew_no= #{no}
+	</select>
+	<!-- end 송진현 -->
+	
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	
+"-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gatherings">
+
+
+<!-- 송진현 -->
+<insert id="insert" parameterType="Gathering">
+	INSERT INTO gatherings(no, fee, regdate)
+	VALUES(#{no},#{fee},sysdate)
+</insert>
+
+<select id="selectOne" resultType="Gathering" parameterType="int">
+	SELECT no,fee
+	FROM gatherings
+	WHERE no=#{no}
+</select>
+<!-- end 송진현 -->
+
+</mapper>  
+
+
+

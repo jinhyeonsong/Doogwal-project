@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	
+"-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="records">
+
+	<select id="selectMatchRecord" parameterType="int" 
+	resultType="MatchRecord">
+	SELECT (SELECT count(*)
+	FROM records
+	WHERE crew_no = #{crewNo} AND type='W') win
+	,
+	(SELECT count(*)
+	FROM records
+	WHERE crew_no = #{crewNo} AND type='D') draw
+	, 
+	(SELECT count(*)
+	FROM records
+	WHERE crew_no = #{crewNo} AND type='L') lose
+	FROM dual
+	</select>
+	
+	<update id="update" parameterType="map">
+		UPDATE records
+		SET type = #{type}
+		WHERE meeting_no=#{meetingNo} AND crew_no = #{crewNo}
+	</update>
+
+	<!--박형우 start-->
+	<!--20210130 start-->
+	
+	<insert id="insertRecord" parameterType="Record">
+		INSERT INTO records(NO, TYPE, CREW_NO, MEETING_NO, REGDATE)
+		VALUES(records_seq.nextval, 'B', #{crewNo}, #{meetingNo}, systimestamp)
+	</insert>
+	
+	<!--20210130 end-->
+	<!--박형우 end-->
+</mapper>  
