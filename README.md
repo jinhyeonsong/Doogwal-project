@@ -35,3 +35,9 @@ back-end : 모임 개설하기, 모임 상세보기, 밋팅 디테일, 밋팅 �
 3. 웹서비스 구체성 : 제공하는 웹서비스가 무엇인지 한 눈에 알 수 있도록 캐치프레이즈 문구를 메인에 배치
 4. 과정 시각화 : 에어비엔비처럼 동호회를 만드는 과정을 시각적으로 보여주도록 함
 5. 성비 표시 : 동호회 가입 전 남녀 비율에 대한 정보 표시
+
+<iframe width="859" height="483" src="https://www.youtube.com/embed/0p3VAdnzUSI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
